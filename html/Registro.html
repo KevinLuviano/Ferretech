@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+		<head>
+				<title> FerreTech </title>
+				
+				
+		</head>
+		<body>
+			<div id="header-placeholder"></div>
+		<h1>Crear cuenta :</h1>
+		<table width:"60%" border="0" > 
+		<form>
+			<tr>
+			<td><label for="nombre">Nombre*</label><br></br></td>
+			<td><input type="text" id="nombre" name="nombre" size="25" pattern="[A-Za-z\s]*" title="solo letras"required /></td>
+			</tr>
+			<tr>
+			<td><label for="apellido">Apellido*</label><br></br></td>
+			<td><input type="text" id="apellido" name="apellido" size="25" pattern="[A-Za-z\s]*" title="solo letras"required /></td>
+			</tr>
+			<tr>
+			<td><label for="Correo electronico">Correo electrónico*</label><br></br></td>
+			<td><input type="email" id="email" name="email" size="25" required /></td>
+			</tr>
+			<tr>
+			<td><label for="Contraseña">Contraseña*</label><br></br></td>
+			<td><input type="password" id="contraseña" name="contraseña" size="25" required /></td>
+			</tr>
+			<tr>
+			<td><label for="Confirmar Contraseña">Confirmar Contraseña*</label><br></br></td>
+			<td><input type="password" id="confirmar_contraseña" name="confirmar_contraseña" size="25" required /></td>
+			</tr>
+			
+		<tr>
+		<td>
+		<input type="submit" value="limpiar datos"/>
+		<input type="submit" value="Registrarse"/>
+		</td>
+		</tr>
+	</form	>
+	</table>
+<div id="footer-placeholder"></div>
+	</body>
+			 <script>
+        fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+			document.getElementById('header-placeholder').innerHTML = data;
+		})
+ </script>
+  <script>
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+			document.getElementById('footer-placeholder').innerHTML = data;
+		})
+ </script>
+		
+</html>	
