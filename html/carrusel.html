@@ -1,0 +1,147 @@
+
+<style>
+  .carrusel-promociones {
+    background-color: #0a192f; /* Azul Marino Corporativo */
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .carrusel-promociones .carousel-item {
+    height: 420px; /* Altura ideal optimizada para banners */
+  }
+  .carrusel-promociones .contenedor-promocion {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+  }
+  .carrusel-promociones .texto-promocion {
+    max-width: 50%;
+  }
+  .carrusel-promociones .badge-promo {
+    background-color: #ffffff;
+    color: #0a192f;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+  .carrusel-promociones h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+  }
+  .carrusel-promociones p {
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    margin-bottom: 25px;
+  }
+  .carrusel-promociones .btn-accion {
+    background-color: #ffffff;
+    color: #0a192f;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+  }
+  .carrusel-promociones .btn-accion:hover {
+    background-color: transparent;
+    color: #ffffff;
+  }
+  .carrusel-promociones .contenedor-imagen {
+    width: 40%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carrusel-promociones .imagen-producto {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    /* Filtro sutil para homogeneizar fondos claros de catálogos oficiales */
+    filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3)); 
+  }
+  /* Personalización de controles de Bootstrap a Blanco */
+  .carrusel-promociones .carousel-indicators [data-bs-target] {
+    background-color: #ffffff;
+  }
+  @media (max-width: 768px) {
+    .carrusel-promociones .contenedor-promocion {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px 5%;
+    }
+    .carrusel-promociones .texto-promocion { max-width: 100%; }
+    .carrusel-promociones .contenedor-imagen { display: none; } /* Oculta imagen en móviles pequeños */
+    .carrusel-promociones h2 { font-size: 1.8rem; }
+  }
+</style>
+
+<div id="promoCarousel" class="carousel slide carrusel-promociones">
+  
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+    <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="2"></button>
+  </div>
+
+  <div class="carousel-inner">
+    
+    <div class="carousel-item active">
+      <div class="contenedor-promocion">
+        <div class="texto-promocion">
+          <span class="badge-promo">Mes de las Herramientas Eléctricas</span>
+          <h2>Pulidoras Truper<br>con 15% de Descuento</h2>
+          <p>Potencia industrial de 1200W para acabados perfectos. Incluye garantía oficial y envío inmediato.</p>
+          <a href="#herramientas" class="btn btn-accion">Ver Modelos</a>
+        </div>
+        <div class="contenedor-imagen">
+          <img src="../img/pulidoraIndustrial.jpg" alt="Pulidora Industrial" class="imagen-producto" height="200px" width="200px">
+          <img src="../img/pulidoraRotativa.jpg" alt="pulidora rotativa" class="imagen-producto" height="200px" width="200px">
+        </div>
+      </div> </div>
+
+    <div class="carousel-item">
+      <div class="contenedor-promocion">
+        <div class="texto-promocion">
+          <span class="badge-promo">Fijación Profesional</span>
+          <h2>Sujeción Absoluta<br>Precios de Mayoreo</h2>
+          <p>Todo en tornillería de alta resistencia, taquetes y sistemas de fijación para concreto y metal.</p>
+          <a href="#fijacion" class="btn btn-accion">Cotizar Lote</a>
+        </div>
+        <div class="contenedor-imagen">
+          <img src="../img/sistemadetornillos.jpg" class="imagen-producto" alt="Sistemas de fijación Truper" height="300px" width="350px">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="contenedor-promocion">
+        <div class="texto-promocion">
+          <span class="badge-promo">Combo Imperdible</span>
+          <h2>Rotomartillo 1/2"<br>+ Kit de Brocas Gratis</h2>
+          <p>Equípate con el potente motor de 650W sobre baleros de bolas. Ideal para concreto, acero y madera.</p>
+          <a href="#combos" class="btn btn-accion">Comprar Combo</a>
+        </div>
+        <div class="contenedor-imagen">
+          <img src="../img/rotomartillo.png" class="imagen-producto" alt="Rotomartillo Truper Profesional" height="300px" width="350px">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
