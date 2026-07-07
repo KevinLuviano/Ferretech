@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FerreTech: Finaliza tu compra de herramientas de forma segura.">
+    <title>FerreTech - Checkout</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-corporativo: #0a192f;
+        }
+        .bg-corporativo {
+            background-color: var(--azul-corporativo) !important;
+        }
+        .text-corporativo {
+            color: var(--azul-corporativo) !important;
+        }
+        .btn-pagar {
+            background-color: var(--azul-corporativo);
+            color: #ffffff;
+            font-weight: bold;
+            border: 2px solid var(--azul-corporativo);
+            transition: all 0.3s ease;
+        }
+        .btn-pagar:hover {
+            background-color: transparent;
+            color: var(--azul-corporativo);
+        }
+        /* Estilo para los pasos del proceso */
+        .paso-proceso {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .paso-proceso.activo {
+            color: var(--azul-corporativo);
+            font-weight: bold;
+        }
+        .resumen-fijo {
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+  
+    <div id="header-placeholder"></div>
+
+    <main class="container my-5">
+        <div class="d-flex justify-content-center align-items-center mb-4 pb-2 border-bottom">
+            <span class="paso-proceso">1. Carrito</span>
+            <span class="mx-3 text-muted">➔</span>
+            <span class="paso-proceso activo">2. Envío y Pago</span>
+            <span class="mx-3 text-muted">➔</span>
+            <span class="paso-proceso">3. Confirmación</span>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-7 col-md-12">
+                <h3 class="mb-4 text-corporativo fw-bold">Detalles de Envío</h3>
+                <form id="form-checkout" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="nombre" class="form-label">Nombre(s)</label>
+                            <input type="text" class="form-row form-control" id="nombre" placeholder="Juan" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" placeholder="Pérez" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" placeholder="usuario@ejemplo.com" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="direccion" class="form-label">Calle y Número</label>
+                            <input type="text" class="form-control" id="direccion" placeholder="Av. Juárez #123, Col. Centro" required>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" required>
+                                <option value="">Selecciona...</option>
+                                <option>Ciudad de México</option>
+                                <option>Estado de México</option>
+                                <option>Jalisco</option>
+                                <option>Nuevo León</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="ciudad" class="form-label">Municipio / Alcaldía</label>
+                            <input type="text" class="form-control" id="ciudad" placeholder="Monterrey" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cp" class="form-label">C.P.</label>
+                            <input type="text" class="form-control" id="cp" placeholder="64000" required>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="mb-3 text-corporativo fw-bold">Forma de Pago</h3>
+                    <div class="my-3">
+                        <div class="form-check mb-2">
+                            <input id="tarjeta" name="metodoPago" type="radio" class="form-check-input" checked required>
+                            <label class="form-check-label" for="tarjeta">Tarjeta de Crédito  (Visa, Mastercard, AMEX)</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input id="paypal" name="metodoPago" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="paypal">Tarjeta de debito</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input id="efectivo" name="metodoPago" type="radio" class="form-check-input" required>
+                            <label class="form-check-label" for="efectivo">Efectivo en la sucursal</label>
+                        </div>
+                    </div>
+
+                    <div class="row gy-3 mt-2" id="datos-tarjeta">
+                        <div class="col-md-6">
+                            <label for="cc-nombre" class="form-label">Nombre en la tarjeta</label>
+                            <input type="text" class="form-control" id="cc-nombre" placeholder="Juan Pérez" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cc-numero" class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-control" id="cc-numero" placeholder="0000 0000 0000 0000" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-expiracion" class="form-label">Expiración</label>
+                            <input type="text" class="form-control" id="cc-expiracion" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="123" required>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <button class="w-100 btn btn-lg btn-pagar py-3" type="submit">Finalizar Pedido e Ir al Pago</button>
+                </form>
+            </div>
+
+            <div class="col-lg-5 col-md-12">
+                <div class="resumen-fijo">
+                    <h3 class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="text-corporativo fw-bold">Tu Pedido</span>
+                        <span class="badge bg-corporativo rounded-pill">3</span>
+                    </h3>
+                    
+                    <ul class="list-group mb-3 shadow-sm">
+                        <li class="list-group-item d-flex justify-content-between lh-sm p-3">
+                            <div>
+                                <h6 class="my-0 fw-bold">Rotomartillo 1/2" Truper</h6>
+                                <small class="text-muted">Cantidad: 1</small>
+                            </div>
+                            <span class="text-muted">$500.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm p-3">
+                            <div>
+                                <h6 class="my-0 fw-bold">Pulidora Industrial 1200W</h6>
+                                <small class="text-muted">Cantidad: 1 (15% Descuento)</small>
+                            </div>
+                            <span class="text-muted">$595.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm p-3">
+                            <div>
+                                <h6 class="my-0 fw-bold">Caja de Taquetes 1/4"</h6>
+                                <small class="text-muted">Cantidad: 2 bolsas</small>
+                            </div>
+                            <span class="text-muted">$50.00</span>
+                        </li>
+                        
+                        <li class="list-group-item d-flex justify-content-between bg-light px-3 py-2">
+                            <span class="text-muted">Subtotal</span>
+                            <span class="text-muted">$1,145.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light px-3 py-2">
+                            <span class="text-muted">Envío</span>
+                            <span class="text-success text-uppercase fw-bold">Gratis</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between p-3">
+                            <span class="fw-bold text-corporativo fs-5">Total a Pagar (MXN)</span>
+                            <strong class="text-corporativo fs-5">$1,145.00</strong>
+                        </li>
+                    </ul>
+
+                    <div class="card p-2 shadow-sm">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Código promocional">
+                            <button type="button" class="btn btn-secondary text-white fw-semibold">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cargar Header
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error("Error cargando el header:", err));
+
+            // Cargar Footer
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error("Error cargando el footer:", err));
+        });
+
+        // Validación de Bootstrap nativa para el formulario
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
