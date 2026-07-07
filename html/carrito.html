@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pago</title>
+    <link rel="stylesheet" href="../css/carritocss.css">
+</head>
+<body>
+		<div id="header-placeholder"></div>
+    <div class="principal">
+
+        <div class="carrito">
+            
+            <div class="tabla-top">
+                <div class="col articulo">Articulo</div>
+                <div class="col cantidad">Cantidad</div>
+                <div class="col precio">Precio</div>
+            </div>
+
+            <div class="item">
+                <div class="prod-info">
+                    <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=150" alt="Herramientas" class="prod-img">
+                    <span class="prod-txt">Juego de herramientas de 104 piezas</span>
+                </div>
+                
+                <div class="cant-box">
+                    <button type="button" class="btn-c">-</button>
+                    <input type="text" class="cant-in" value="1" readonly>
+                    <button type="button" class="btn-c">+</button>
+                </div>
+
+                <div class="prod-pre">$ 300</div>
+            </div>
+            
+        </div>
+
+        <div class="lateral">
+            
+            <div class="total-box">
+                <h2 class="total-tit">Resumen</h2>
+                <div class="time-row">
+                    <span>Total a pagar</span>
+                    <span>$ 300</span>
+                </div>
+            </div>
+            
+            <button type="button" class="btn-sig">Siguiente</button>
+            
+        </div>
+
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+  		 <script>
+        fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+			document.getElementById('header-placeholder').innerHTML = data;
+		})
+ </script>
+  <script>
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+			document.getElementById('footer-placeholder').innerHTML = data;
+		})
+ </script>
+		
+</html>
