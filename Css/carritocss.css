@@ -152,3 +152,21 @@ body {
     border-radius: 40px;
     cursor: pointer;
 }
+ /* Estilo para los pasos del proceso */
+        .paso-proceso {
+            color: var(--azul-corporativo);
+            font-weight: bold;
+        }
+        .paso-proceso.activo {
+           font-size: 0.9rem;
+            color: #6c757d; 
+        }
+          .paso-proceso1 {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .d-flex{
+            padding-left: 800px;
+            padding-top: 30px;
+            font-size: 1.2rem;
+        }
