@@ -1,0 +1,94 @@
+:root {
+    --azul-oscuro: #121e4b;
+    --gris-borde: #ccc;
+    --gris-fondo: #f5f5f5;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contenedor-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 60px auto;
+}
+
+.caja-formulario {
+    background-color: white;
+    border: 1px solid var(--gris-borde);
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-reg {
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+    border-bottom: 2px solid var(--azul-oscuro);
+    padding-bottom: 10px;
+}
+
+.tabla-form {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+.etiqueta {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.entrada-reg {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--gris-borde);
+    font-size: 1rem;
+    outline: none;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.entrada-reg:focus {
+    border-color: var(--azul-oscuro);
+}
+
+.botones-box {
+    text-align: right;
+    padding-top: 20px;
+}
+
+.btn-limpiar {
+    background-color: var(--gris-fondo);
+    color: #333;
+    border: 1px solid var(--gris-borde);
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-registrar {
+    background-color: var(--azul-oscuro);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+}

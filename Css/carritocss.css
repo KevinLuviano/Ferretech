@@ -1,0 +1,172 @@
+:root {
+    --azul-oscuro: #121e4b;
+    --gris-borde: #ccc;
+    --gris-fondo: #f5f5f5;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+}
+
+.principal {
+    display: flex;
+    gap: 30px;
+    max-width: 95%;
+    width: 1350px;
+    align-items: flex-start;
+    margin: 40px auto;
+}
+
+.carrito {
+    flex: 2.3;
+}
+
+.tabla-top {
+    background-color: var(--azul-oscuro);
+    color: white;
+    display: flex;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.col { 
+    flex: 1; 
+}
+
+.col.articulo { 
+    flex: 2; 
+}
+
+.col.cantidad { 
+    flex: 1; 
+    text-align: center; 
+}
+
+.col.precio { 
+    flex: 1; 
+    text-align: right; 
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 30px 20px;
+    border-bottom: 1px solid var(--gris-borde);
+    background: white;
+}
+
+.prod-info {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.prod-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.prod-txt {
+    font-weight: bold;
+    color: #000;
+    font-size: 1.1rem;
+}
+
+.cant-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-c {
+    background-color: var(--gris-fondo);
+    border: 1px solid var(--gris-borde);
+    color: #666;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cant-in {
+    width: 40px;
+    height: 26px;
+    text-align: center;
+    border: 1px solid var(--gris-borde);
+}
+
+.prod-pre {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.lateral {
+    flex: 1;
+    min-width: 320px;
+}
+
+.total-box {
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.total-tit {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid white;
+    padding-bottom: 12px;
+    margin: 0 0 20px 0;
+}
+
+.time-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.btn-sig {
+    background-color: var(--azul-oscuro);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+}
+ /* Estilo para los pasos del proceso */
+        .paso-proceso {
+            color: var(--azul-corporativo);
+            font-weight: bold;
+        }
+        .paso-proceso.activo {
+           font-size: 0.9rem;
+            color: #6c757d; 
+        }
+          .paso-proceso1 {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .d-flex{
+            padding-left: 800px;
+            padding-top: 30px;
+            font-size: 1.2rem;
+        }

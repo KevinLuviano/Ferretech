@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
-		<head>
-				<title> FerreTech </title>
-				
-				
-		</head>
-		<header>
-			
-		</header>
-		<body>
-		<div id="header-placeholder"></div>
-	
-		<h1>Iniciar sesión :</h1>
-		<table width:"60%" border="0" > 
-		<form>
-			<tr>
-			<td><label for="email">Correo electrónico*</label><br></br></td>
-			<td><input type="email" id="email" name="email" size="25" placeholder="correo@ferretech.com" required /></td>
-			</tr>
-			<tr>
-			<td><label for="Contraseña">Contraseña*</label><br></br></td>
-			<td><input type="password" id="contraseña" name="contraseña" size="25"  required /></td>
-			</tr>
-			
-			
-		<tr>
-		<td>
-		<input type="submit" value="Iniciar sesión"/>
-		</td>
-		</tr>
-	</form	>
-	</table>
-	
-<div id="footer-placeholder"></div>
-	</body>
+<head>
+    <title>FerreTech</title>
+     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    
+    <div id="header-placeholder"></div>
+
+    <div class="contenedor-login">
+        
+        <div class="caja-formulario">
+            
+            <h1 class="titulo-log">Iniciar sesión :</h1>
+            
+            <form>
+                <table class="tabla-form"> 
+                    <tr>
+                        <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
+                        <td><input type="email" id="email" name="email" class="entrada-log" size="25" placeholder="correo@ferretech.com" required /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
+                        <td><input type="password" id="contraseña" name="contraseña" class="entrada-log" size="25" required /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="botones-box">
+                            <input type="submit" value="Iniciar sesión" class="btn-iniciar"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+</body>
 	 <script>
         fetch('header.html')
         .then(response => response.text())
