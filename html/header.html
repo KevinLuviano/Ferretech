@@ -1,59 +1,43 @@
-<style>
-    .header-ferretech {
-        background-color: #02104f;
-        color: white;
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
+<header class="header">
 
-    .header-ferretech div {
-        margin-bottom: 15px;
-    }
+    <div class="header-superior">
 
-    .header-ferretech a {
-        color: #c4c4c4;
-        text-decoration: none;
-        margin-right: 15px;
-    }
+        <div class="logo-titulo">
+            <img src="../img/logo.png" alt="Logo Ferretech" height="50">
+            <h1>FERRETECH</h1>
+        </div>
 
-    .header-ferretech ul {
-        padding-left: 20px;
-    }
-</style>
+        <form class="buscador">
+            <input type="search" placeholder="Buscar...">
+        </form>
 
-<header class="header-ferretech">
-    <div>
-        <img src="../img/logo.PNG" alt="Logo de Ferretech" height="60">
-        <h1>FERRETECH</h1>
+        <div class="carrito-usuario">
+            <a href="login.html">
+                <img src="../img/login.png" alt="Login" height="30">
+                <div>Iniciar sesión | Registrarse</div>
+            </a>
+            <a href="carrito.html">
+                <img src="../img/carrito.png" alt="Carrito" height="30">
+                <div>Carrito</div>
+            </a>
+        </div>
+
     </div>
 
-    <form action="search.php" method="get">
-        <input type="search" name="query" placeholder="Buscar...">
-        <button type="submit">Buscar</button>
-    </form>
+    <nav class="header-inferior">
+        <div class="nav">
+            <a href="inicio.html">Inicio</a>
+        </div>
 
-    <div>
-        <a href="login.html">
-            <img src="../img/login.PNG" alt="Icono de inicio de sesión" height="30">
-            Iniciar sesión</a> | <a href="registro.html">Registrarse</a>
-        <br>
-        <a href="carrito.html">
-            <img src="../img/carrito.PNG" alt="Icono de carrito" height="30">
-            Carrito</a>
-    </div>
+        <div class="separador"></div>
 
-    <nav>
-        <ul>
-            <li><a href="Inicio.html">Inicio</a></li>
-            <li>
-                <details>
-                    <summary>Categorías</summary>
-                    <ul>
-                        <li><a href="Categoría-Herramientas.html">Herramientas</a></li>
-                        <li><a href="Categoría-Materiales.html">Materiales de Fijación</a></li>
-                    </ul>
-                </details>
-            </li>
-        </ul>
+        <details class="categorias">
+            <summary>Categorías ▼</summary>
+            <ul class="dropdown">
+                <li><a href="Categoría-Herramientas.html">Herramientas</a></li>
+                <li><a href="Categoría-Materiales.html">Materiales de Fijación</a></li>
+            </ul>
+        </details>
     </nav>
+
 </header>

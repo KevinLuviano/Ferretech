@@ -1,0 +1,54 @@
+.footer {
+    background-color: #02104f; 
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 40px 50px; 
+    margin-top: 60px;
+}
+
+.footer hr {
+    border: none;
+    border-top: 1px solid white;
+    margin-bottom: 30px;
+}
+
+.contenido {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    flex-wrap: wrap;
+}
+
+.contactanos h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.contactanos p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: white; 
+}
+
+.enlaces {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+    text-align: right; 
+}
+
+.enlaces a {
+    color: #c4c4c4; 
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.enlaces a:hover {
+    color: white; 
+    text-decoration: underline;
+}
