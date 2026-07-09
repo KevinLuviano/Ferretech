@@ -83,7 +83,7 @@
 }
 
 .header-inferior>.nav>a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #2b3a7a;
 }
 
 .separador {
@@ -115,7 +115,7 @@
 }
 
 .categorias summary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #2b3a7a;
 }
 
 .dropdown {
@@ -124,18 +124,18 @@
     left: 0;
     width: 100%;
     background-color: #02104f;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid #c4c4c4;
     border-top: none;
     border-radius: 0 0 8px 8px;
     padding: 0;
     margin: 0;
     list-style: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 16px black;
     z-index: 1000;
 }
 
 .dropdown li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .dropdown li:last-child {
@@ -153,5 +153,5 @@
 }
 
 .dropdown li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #2b3a7a; ;
 }
