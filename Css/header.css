@@ -45,7 +45,7 @@
     gap: 30px;
 }
 
-.carrito-usuario a {
+.menu {
     color: white;
     text-decoration: none;
     display: flex;
@@ -53,6 +53,15 @@
     align-items: center;
     font-size: 13px;
     gap: 5px;
+}
+
+.enlaces-texto a {
+    color: white;
+    text-decoration: none;
+}
+
+.enlaces-texto a:hover {
+    color: #c4c4c4;
 }
 
 .carrito-usuario a:hover {
