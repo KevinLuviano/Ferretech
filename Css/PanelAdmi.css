@@ -13,7 +13,7 @@
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        /* Estilo para los botones de Acción (Subrayados y centrados como en tu imagen) */
+        /* Estilo para los botones de Acción*/
         .btn-accion-tabla {
             color: var(--azul-corporativo);
             text-decoration: underline;
