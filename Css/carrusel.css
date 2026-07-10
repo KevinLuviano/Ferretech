@@ -1,0 +1,80 @@
+.carrusel-promociones {
+  background-color: #0a192f; /* Azul Marino Corporativo */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.carrusel-promociones .carousel-item {
+  height: 420px; /* Altura  optimizada para banners */
+}
+.carrusel-promociones .contenedor-promocion {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+}
+.carrusel-promociones .texto-promocion {
+  max-width: 50%;
+}
+.carrusel-promociones .badge-promo {
+  background-color: #ffffff;
+  color: #0a192f;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+.carrusel-promociones h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+.carrusel-promociones p {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin-bottom: 25px;
+}
+.carrusel-promociones .btn-accion {
+  background-color: #ffffff;
+  color: #0a192f;
+  font-weight: bold;
+  border: 2px solid #ffffff;
+  padding: 10px 30px;
+  transition: all 0.3s ease;
+}
+.carrusel-promociones .btn-accion:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+.carrusel-promociones .contenedor-imagen {
+  width: 40%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carrusel-promociones .imagen-producto {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  /* Filtro sutil para homogeneizar fondos claros de catálogos oficiales */
+  filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.3)); 
+}
+/* Personalización de controles de Bootstrap a Blanco */
+.carrusel-promociones .carousel-indicators [data-bs-target] {
+  background-color: #ffffff;
+}
+@media (max-width: 768px) {
+  .carrusel-promociones .contenedor-promocion {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 5%;
+  }
+  .carrusel-promociones .texto-promocion { max-width: 100%; }
+  .carrusel-promociones .contenedor-imagen { display: none; } /* Oculta imagen en móviles pequeños */
+  .carrusel-promociones h2 { font-size: 1.8rem; }
+}
