@@ -173,3 +173,64 @@ body {
     padding-top: 30px;
     font-size: 1.2rem;
 }
+@media screen and (max-width: 768px) {
+    .principal {
+        flex-direction: column;
+        margin: 15px auto;
+        gap: 20px;
+        max-width: 95%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .carrito, .lateral {
+        width: 100%;
+        flex: none;
+        box-sizing: border-box;
+    }
+
+    .lateral {
+        min-width: 0;
+    }
+
+    .tabla-top {
+        display: none;
+    }
+
+    /* Ajustamos el contenedor del producto para que use el 100% */
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .prod-info {
+        width: 100%;
+    }
+
+    /* Acomodamos los botones y el precio en la misma línea de forma limpia */
+    .cant-box {
+        width: 100%;
+        justify-content: space-between; /* Esto empuja los botones a la izquierda y el precio a la derecha */
+        align-items: center;
+        order: 2;
+    }
+
+    /* Quitamos el comportamiento de bloque para que se alinee con los botones */
+    .prod-pre {
+        width: auto;
+        text-align: right;
+        font-size: 1.4rem;
+        margin-top: 0; 
+    }
+
+    .d-flex {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 20px;
+        text-align: center;
+    }
+}
