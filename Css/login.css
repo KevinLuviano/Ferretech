@@ -81,3 +81,57 @@ body {
     border-radius: 40px;
     cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+    .contenedor-login {
+        margin: 40px auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .caja-formulario {
+        padding: 25px 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Forzamos de manera estricta que la tabla se rompa en bloques */
+    .tabla-form, 
+    .tabla-form tbody, 
+    .tabla-form tr, 
+    .tabla-form td {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .tabla-form {
+        border-spacing: 0;
+    }
+
+    .tabla-form tr {
+        margin-bottom: 20px; 
+    }
+
+    .tabla-form td {
+        padding: 0 !important;
+        text-align: left;
+    }
+
+    .etiqueta {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    /* El botón se centrará y ocupará todo el ancho para que no se desfase */
+    .botones-box {
+        text-align: center;
+        padding-top: 15px;
+        width: 100%;
+    }
+
+    .btn-iniciar {
+        width: 100%;
+        border-radius: 40px; /* Mantiene tu diseño redondeado original */
+    }
+}
