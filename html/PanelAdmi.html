@@ -17,11 +17,15 @@
     <div id="header-placeholder"></div>
 
     <main class="container my-5">
-        <div class="row mb-4">
+        <div class="row mb-4 align-items-center">
             <div class="col">
                 <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1" style="color: #000000;">
                     Inventario
                 </h1>
+            </div>
+            <!-- Botón extra para agregar productos directamente -->
+            <div class="col text-end">
+                <a href="gestion.html" class="btn btn-dark fw-semibold px-4">➕ Agregar Nuevo Producto</a>
             </div>
         </div>
 
@@ -50,8 +54,7 @@
                             <td>45</td>
                             <td>$500</td>
                             <td>
-                                <a href="reabastecer.html?id=F-001" class="btn-accion-tabla mb-1">Reabastecer</a>
-                                <a href="gestionar.html?id=F-001" class="btn-accion-tabla">gestionar</a>
+                                <a href="gestion.html?id=F-001" class="btn-accion-tabla px-4">Gestionar</a>
                             </td>
                         </tr>
                         <tr>
@@ -61,8 +64,7 @@
                             <td>250</td>
                             <td>$25</td>
                             <td>
-                                <a href="reabastecer.html?id=F-S0055" class="btn-accion-tabla mb-1">Reabastecer</a>
-                                <a href="gestionar.html?id=F-S0055" class="btn-accion-tabla">gestionar</a>
+                                <a href="gestion.html?id=F-S0055" class="btn-accion-tabla px-4">Gestionar</a>
                             </td>
                         </tr>
                         <tr>
@@ -72,8 +74,7 @@
                             <td>5</td>
                             <td>$700</td>
                             <td>
-                                <a href="reabastecer.html?id=F-5558" class="btn-accion-tabla mb-1">Reabastecer</a>
-                                <a href="gestionar.html?id=F-5558" class="btn-accion-tabla">gestionar</a>
+                                <a href="gestion.html?id=F-5558" class="btn-accion-tabla px-4">Gestionar</a>
                             </td>
                         </tr>
                     </tbody>
@@ -88,7 +89,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Nombre estático del administrador para la fase HTML/CSS
             const nombreAdministrador = "Juan Pérez (Admin)";
 
             // 1. Cargar Header e inyectar el distintivo de Administrador
@@ -96,11 +96,8 @@
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-placeholder').innerHTML = data;
-                    
-                    // Busca la barra de navegación del header.html para meter el nombre
                     const navContenedor = document.querySelector('#header-placeholder .navbar-nav, #header-placeholder .navbar');
                     if (navContenedor) {
-                        // Lo añade al extremo derecho
                         navContenedor.insertAdjacentHTML('beforeend', `
                             <div class="ms-auto d-flex align-items-center">
                                 <span class="badge-admin">👤 Módulo: ${nombreAdministrador}</span>
