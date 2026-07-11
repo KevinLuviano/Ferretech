@@ -164,3 +164,52 @@
 .dropdown li a:hover {
     background-color: #2b3a7a; ;
 }
+
+@media (max-width: 768px) {
+    .header-superior {
+        flex-direction: column;
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .logo-titulo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 5px;
+    }
+
+    .logo-titulo img {
+        height: 30px;
+    }
+
+    .logo-titulo h1 {
+        font-size: 18px;
+    }
+
+    .buscador {
+        width: 90%;
+        max-width: 90%;
+        margin: 5px 0;
+    }
+
+    .carrito-usuario {
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .header-inferior {
+        flex-direction: row;
+    }
+
+    .nav, .categorias {
+        width: 50%;
+    }
+
+    .header-inferior > .nav > a, .categorias summary {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+}
