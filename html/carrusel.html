@@ -31,8 +31,8 @@
           <div class="contenedor-promocion">
             <div class="texto-promocion">
               <span class="badge-promo">Mes de las Herramientas Eléctricas</span>
-              <h2>Pulidoras Truper<br>con 15% de Descuento</h2>
-              <p>Potencia industrial de 1200W para acabados perfectos. Incluye garantía oficial y envío inmediato.</p>
+              <h2>Pulidoras Truper<br>de la mejor calidad</h2>
+              <p>Potencia industrial de 1200W para acabados perfectos. Incluye garantía oficial .</p>
               <!-- Enlace y texto modificados -->
               <a href="Categoria-herramientas.html" class="btn btn-accion">Ver catálogo</a>
             </div>
@@ -64,7 +64,7 @@
           <div class="contenedor-promocion">
             <div class="texto-promocion">
               <span class="badge-promo">Combo Imperdible</span>
-              <h2>Rotomartillo 1/2"<br>+ Kit de Brocas Gratis</h2>
+              <h2>Rotomartillo 1/2"<br>+ Kit de Brocas </h2>
               <p>Equípate con el potente motor de 650W sobre baleros de bolas. Ideal para concreto, acero y madera.</p>
               
               <a href="Categoria-herramientas.html" class="btn btn-accion">Ver catálogo</a>
@@ -88,5 +88,43 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+    
+  
+
+
+    <script>
+    // Usamos una función autoejecutable para aislar las variables y que no choquen con otros scripts
+    (() => {
+      const inicializarMiCarrusel = () => {
+        const miCarruselElemento = document.getElementById('promoCarousel');
+        if (!miCarruselElemento) return;
+
+        // 1. Inicializamos el carrusel mediante JS
+        const miCarrusel = new bootstrap.Carousel(miCarruselElemento, {
+          interval: 4000,
+          wrap: true,
+          pause: 'hover'
+        });
+
+        // 2. Aplicamos el efecto a los botones una vez que están renderizados
+        const botonesAccion = miCarruselElemento.querySelectorAll('.btn-accion');
+        botonesAccion.forEach(boton => {
+          boton.addEventListener('mouseenter', () => miCarrusel.pause());
+          boton.addEventListener('mouseleave', () => miCarrusel.cycle());
+        });
+      };
+
+      // Si Bootstrap ya está cargado, lo ejecutamos inmediatamente
+      if (typeof bootstrap !== 'undefined') {
+        inicializarMiCarrusel();
+      } else {
+        
+        window.addEventListener('load', inicializarMiCarrusel);
+      }
+    })();
+  </script>
+</body>
 </body>
 </html>
