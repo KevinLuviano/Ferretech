@@ -138,6 +138,30 @@
             })
     </script>
 
+    <script>
+    const botonesAgregar = document.querySelectorAll('.btn-agregar');
+
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener('click', function(evento) {
+
+            const articulo = evento.target.closest('.producto');
+
+            const titulo = articulo.querySelector('h3').innerText;
+            const precio = articulo.querySelector('.precio').innerText;
+            const imagen = articulo.querySelector('img').src;
+
+            const productoSeleccionado = {
+                titulo: titulo,
+                precio: precio,
+                imagen: imagen
+            };
+
+            console.log("Producto agregado:", productoSeleccionado);
+            alert("¡" + titulo + " agregado al carrito!");
+        });
+    });
+</script>
+
 </body>
 
 </html>
