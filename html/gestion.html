@@ -131,6 +131,61 @@
                 document.getElementById('prodId').disabled = true; // Protege el ID si se edita
             }
         });
+        document.addEventListener("DOMContentLoaded", () => {
+    // 1. Base de datos inicial de productos (si no existe en localStorage, la creamos)
+    if (!localStorage.getItem('inventario')) {
+        const productosIniciales = [
+            { id: "1", nombre: "Rotomartillo 1/2 Truper", stock: 15, precio: 1250 },
+            { id: "2", nombre: "Pulidora Truper 1200W", stock: 8, precio: 1800 },
+            { id: "3", nombre: "Kit de Tornillos Sujeción", stock: 50, precio: 350 }
+        ];
+        localStorage.setItem('inventario', JSON.stringify(productosIniciales));
+    }
+
+            const tablaCuerpo = document.getElementById('tabla-inventario-cuerpo'); 
+
+            function renderizarInventario() {
+                if (!tablaCuerpo) return;
+                const inventario = JSON.parse(localStorage.getItem('inventario'));
+                tablaCuerpo.innerHTML = "";
+
+                inventario.forEach(prod => {
+                    const fila = document.createElement('tr');
+                    fila.innerHTML = `
+                        <td>${prod.id}</td>
+                        <td>${prod.nombre}</td>
+                        <td>$${prod.precio}</td>
+                        <td>
+                            <input type="number" class="form-control form-control-sm input-stock" 
+                                data-id="${prod.id}" value="${prod.stock}" style="width: 80px;">
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm btn-guardar" data-id="${prod.id}">Actualizar</button>
+                        </td>
+                    `;
+                    tablaCuerpo.appendChild(fila);
+                });
+
+                // Evento para guardar cambios de stock individualmente
+                document.querySelectorAll('.btn-guardar').forEach(boton => {
+                    boton.addEventListener('click', (e) => {
+                        const idProd = e.target.getAttribute('data-id');
+                        const input = document.querySelector(`.input-stock[data-id="${idProd}"]`);
+                        const nuevoStock = parseInt(input.value);
+
+                        let inventarioActual = JSON.parse(localStorage.getItem('inventario'));
+                        const index = inventarioActual.findIndex(p => p.id === idProd);
+                        if (index !== -1) {
+                            inventarioActual[index].stock = nuevoStock;
+                            localStorage.setItem('inventario', JSON.stringify(inventarioActual));
+                            alert(`¡Stock de ${inventarioActual[index].nombre} actualizado con éxito!`);
+                        }
+                    });
+                });
+            }
+
+            renderizarInventario();
+        });
     </script>
 </body>
 </html>
