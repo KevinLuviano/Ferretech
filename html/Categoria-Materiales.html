@@ -143,7 +143,7 @@
 
                 const precioNumerico = parseFloat(precio.replace(/[^0-9.]/g, ''));
 
-                let carrito = JSON.parse(localStorage.getItem('carritoFerreteria')) || [];
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
                 const productoExistente = carrito.find(item => item.titulo === titulo);
 
                 if (productoExistente) {
@@ -158,7 +158,7 @@
                     carrito.push(productoSeleccionado);
                 }
 
-                localStorage.setItem('carritoFerreteria', JSON.stringify(carrito));
+                localStorage.setItem('carrito', JSON.stringify(carrito));
 
                 console.log("Producto procesado:", titulo);
             });
