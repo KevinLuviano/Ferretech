@@ -17,7 +17,7 @@
             
             <h1 class="titulo-reg">Crear cuenta :</h1>
             
-            <form>
+            <form id="formulario-registro">
                 <table class="tabla-form"> 
                     <tr>
                         <td><label for="nombre" class="etiqueta">Nombre*</label></td>
@@ -56,19 +56,63 @@
 
 </body>
 
-			 <script>
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-			document.getElementById('header-placeholder').innerHTML = data;
-		})
- </script>
-  <script>
-        fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-			document.getElementById('footer-placeholder').innerHTML = data;
-		})
- </script>
-		
-</html>	
+<script>
+    fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+    })
+</script>
+
+<script>
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    })
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const formulario = document.getElementById("formulario-registro");
+        const inputPass = document.getElementById("contraseña");
+        const inputConfirmPass = document.getElementById("confirmar_contraseña");
+
+        inputConfirmPass.addEventListener("input", () => {
+            if (inputPass.value !== inputConfirmPass.value) {
+                inputConfirmPass.style.border = "2px solid #dc3545";
+            } else {
+                inputConfirmPass.style.border = "2px solid #28a745";
+            }
+        });
+
+        formulario.addEventListener("reset", () => {
+            inputConfirmPass.style.border = "";
+            inputPass.style.border = "";
+        });
+
+        formulario.addEventListener("submit", (evento) => {
+            evento.preventDefault();
+
+            const passValue = inputPass.value;
+            const confirmValue = inputConfirmPass.value;
+            const regexSeguridad = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+            if (!regexSeguridad.test(passValue)) {
+                alert("La contraseña debe tener al menos 8 caracteres, incluyendo letras y números.");
+                inputPass.focus();
+                return;
+            }
+
+            if (passValue !== confirmValue) {
+                alert("Las contraseñas no coinciden. Por favor, verifícalas.");
+                inputConfirmPass.focus();
+                return;
+            }
+
+            alert("¡Registro exitoso! Tu cuenta ha sido creada.");
+            formulario.submit();
+        });
+    });
+</script>
+</html>
