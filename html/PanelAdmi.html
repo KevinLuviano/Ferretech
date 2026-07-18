@@ -14,9 +14,13 @@
 </head>
 <body>
   
+    <!-- Contenedor del Header Modular -->
     <div id="header-placeholder"></div>
 
     <main class="container my-5">
+        <!-- Espacio reservado para las alertas dinámicas de desabasto -->
+        <div id="alertas-stock" class="mb-4"></div>
+
         <div class="row mb-4 align-items-center">
             <div class="col">
                 <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1" style="color: #000000;">
@@ -83,59 +87,42 @@
         </div>
     </main>
 
+    <!-- Contenedor del Footer Modular -->
     <div id="footer-placeholder"></div>
 
+    <!-- Scripts de Bootstrap y Lógica Compartida de la UI -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/header-footer.js"></script>
 
+    <!-- Lógica Operativa Exclusiva del Panel de Administración -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const nombreAdministrador = "Juan Pérez (Admin)";
-
-            // 1. Cargar Header e inyectar el distintivo de Administrador
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                    const navContenedor = document.querySelector('#header-placeholder .navbar-nav, #header-placeholder .navbar');
-                    if (navContenedor) {
-                        navContenedor.insertAdjacentHTML('beforeend', `
-                            <div class="ms-auto d-flex align-items-center">
-                                <span class="badge-admin">👤 Módulo: ${nombreAdministrador}</span>
-                            </div>
-                        `);
-                    }
-                })
-                .catch(err => console.error("Error cargando el header:", err));
-
-          
-        });
-            document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
             const ventas = JSON.parse(localStorage.getItem('historicoVentas')) || [];
             const inventario = JSON.parse(localStorage.getItem('inventario')) || [];
 
-            // 1. Calcular Ingresos Totales
+            // 1. Calcular e inyectar Ingresos Totales si existen los elementos en el DOM
             const ingresosTotales = ventas.reduce((suma, venta) => suma + venta.total, 0);
             const elemIngresos = document.getElementById('dash-ingresos');
             if (elemIngresos) elemIngresos.textContent = `$${ingresosTotales.toFixed(2)} MXN`;
 
-            // 2. Calcular Número de Ventas Realizadas
+            // 2. Calcular e inyectar Número de Ventas Realizadas
             const elemVentas = document.getElementById('dash-ventas-count');
             if (elemVentas) elemVentas.textContent = ventas.length;
 
             // 3. Alertas de Stock Bajo (Menos de 5 unidades)
-            const contenedorAlertas = document.getElementById('alertas-stock'); // Un div de alertas en tu HTML
+            const contenedorAlertas = document.getElementById('alertas-stock');
             if (contenedorAlertas) {
                 contenedorAlertas.innerHTML = "";
                 const productosCriticos = inventario.filter(p => p.stock <= 5);
                 
                 if (productosCriticos.length === 0) {
-                    contenedorAlertas.innerHTML = `<div class="alert alert-success">✅ Todo el inventario está en niveles óptimos.</div>`;
+                    contenedorAlertas.innerHTML = `<div class="alert alert-success m-0">✅ Todo el inventario está en niveles óptimos.</div>`;
                 } else {
                     productosCriticos.forEach(p => {
                         contenedorAlertas.innerHTML += `
-                            <div class="alert alert-warning d-flex justify-content-between align-items-center">
+                            <div class="alert alert-warning d-flex justify-content-between align-items-center mb-2">
                                 <span>⚠️ Quedan solo <strong>${p.stock}</strong> unidades de <strong>${p.nombre}</strong></span>
-                                <a href="gestion.html" class="btn btn-sm btn-outline-dark">Surtir</a>
+                                <a href="gestion.html?id=${p.id}" class="btn btn-sm btn-outline-dark">Surtir</a>
                             </div>
                         `;
                     });
