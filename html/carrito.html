@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <a href="checkout.html" button class="btn-sig">Siguiente</a>
+            <a href="checkout.html" class="btn-sig">Siguiente</a>
             
         </div>
 
@@ -50,22 +50,8 @@
     <div id="footer-placeholder"></div>
 </body>
 
-<script>
-    fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-    });
-</script>
-
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
-
+<script src="../js/header-footer.js"></script>
+    <script src="../js/agregar-carrito.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const contenedorItems = document.getElementById("contenedor-items");
@@ -90,7 +76,7 @@
                 const subtotal = item.precio * item.cantidad;
                 granTotal += subtotal;
 
-                // Creamos el HTML de la tarjeta usando tus clases CSS originales
+               
                 const itemHTML = `
                     <div class="item" data-index="${index}">
                         <div class="prod-info">
