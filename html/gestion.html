@@ -114,13 +114,7 @@
                 })
                 .catch(err => console.error("Error cargando el header:", err));
 
-            // 2. Cargar Footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error("Error cargando el footer:", err));
+          
 
             // 3. Capturar el ID de la URL (Por si viene del botón "Gestionar")
             const urlParams = new URLSearchParams(window.location.search);
@@ -187,5 +181,6 @@
             renderizarInventario();
         });
     </script>
+     <script src="../js/header-footer.js"></script>
 </body>
 </html>
