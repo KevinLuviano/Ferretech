@@ -54,23 +54,11 @@
 
     <script>
      
-        document.addEventListener("DOMContentLoaded", function() {
-    // 1. Cargar Header
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-
-    // 2. Cargar Footer
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        });
+      
+    
 
     // 3. Cargar Carrusel 
-    fetch('carrusel.html')
+    fetch('carrusel.php')
         .then(response => {
             if (!response.ok) throw new Error("No se pudo cargar el archivo del carrusel");
             return response.text();
@@ -79,7 +67,11 @@
             document.getElementById('contenedor-carrusel').innerHTML = html;
         })
         .catch(error => console.error('Error cargando el componente:', error));
-});
+
     </script>
+
+    
+    <script src="../js/header-footer.js?v=2"></script>
+          <script src="../js/agregar-carrito.js"></script>
 </body>
 </html>

@@ -219,39 +219,21 @@
                 </form>
             </div>
 
-            <!-- Columna del Resumen de Pedido -->
+            <!-- Columna del Resumen de Pedido (Volviéndose Dinámica) -->
             <div class="col-lg-5 col-md-12">
                 <div class="resumen-fijo">
                     <h3 class="d-flex justify-content-between align-items-center mb-4">
                         <span class="text-corporativo fw-bold">Tu Pedido</span>
-                        <span class="badge bg-corporativo rounded-pill">3</span>
+                        <span class="badge bg-corporativo rounded-pill" id="contador-productos-badge">0</span>
                     </h3>
                     
                     <ul class="list-group mb-3 shadow-sm">
-                        <li class="list-group-item d-flex justify-content-between lh-sm p-3">
-                            <div>
-                                <h6 class="my-0 fw-bold">Rotomartillo 1/2" Truper</h6>
-                                <small class="text-muted">Cantidad: 1</small>
-                            </div>
-                            <span class="text-muted">$500.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm p-3">
-                            <div>
-                                <h6 class="my-0 fw-bold">Pulidora Industrial 1200W</h6>
-                                <small class="text-muted">Cantidad: 1 (15% Descuento)</small>
-                            </div>
-                            <span class="text-muted">$595.00</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm p-3">
-                            <div>
-                                <h6 class="my-0 fw-bold">Caja de Taquetes 1/4"</h6>
-                                <small class="text-muted">Cantidad: 2 bolsas</small>
-                            </div>
-                            <span class="text-muted">$50.00</span>
-                        </li>
+                        <!-- Aquí el JS inyectará dinámicamente los productos del carrito real -->
+                        <div id="checkout-contenedor-items"></div>
+
                         <li class="list-group-item d-flex justify-content-between bg-light px-3 py-2">
                             <span class="text-muted">Subtotal</span>
-                            <span class="text-muted">$1,145.00</span>
+                            <span class="text-muted" id="checkout-subtotal">$0.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between bg-light px-3 py-2">
                             <span class="text-muted">Envío</span>
@@ -259,7 +241,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between p-3">
                             <span class="fw-bold text-corporativo fs-5">Total a Pagar (MXN)</span>
-                            <strong class="text-corporativo fs-5">$1,145.00</strong>
+                            <strong class="text-corporativo fs-5" id="checkout-total">$0.00</strong>
                         </li>
                     </ul>
                 </div>
@@ -272,17 +254,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Variable global para almacenar el total real de la compra calculada
+        let totalRealCompra = 0;
+
         // Formateadores dinámicos de Entrada
         function formatCardNumber(input) {
-            // Remueve cualquier caracter que no sea número
             let value = input.value.replace(/\D/g, '');
-            // Agrupa en bloques de 4 dígitos
             let formatted = value.match(/.{1,4}/g);
             input.value = formatted ? formatted.join(' ') : value;
         }
 
         function formatExpiry(input) {
-            // Remueve cualquier caracter que no sea número
             let value = input.value.replace(/\D/g, '');
             if (value.length > 2) {
                 input.value = value.slice(0, 2) + '/' + value.slice(2, 4);
@@ -291,22 +273,51 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            // Cargar Header
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error("Error cargando el header:", err));
+        // RENDERIZAR RESUMEN DE COMPRA DESDE LOCALSTORAGE
+        document.addEventListener("DOMContentLoaded", () => {
+            const contenedor = document.getElementById("checkout-contenedor-items");
+            const subtotalElemento = document.getElementById("checkout-subtotal");
+            const totalElemento = document.getElementById("checkout-total");
+            const badgeContador = document.getElementById("contador-productos-badge");
 
-            // Cargar Footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error("Error cargando el footer:", err));
+            // Leer la estructura exacta creada por el Carrito
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `<li class="list-group-item text-center text-muted p-3">No hay productos en tu pedido.</li>`;
+                subtotalElemento.textContent = "$0.00";
+                totalElemento.textContent = "$0.00";
+                badgeContador.textContent = "0";
+                totalRealCompra = 0;
+                return;
+            }
+
+            let granTotal = 0;
+            let totalArticulos = 0;
+            contenedor.innerHTML = ""; // Limpiar estáticos
+
+            carrito.forEach(item => {
+                const costoItem = item.precio * item.cantidad;
+                granTotal += costoItem;
+                totalArticulos += item.cantidad;
+
+                const itemHTML = `
+                    <li class="list-group-item d-flex justify-content-between lh-sm p-3">
+                        <div>
+                            <h6 class="my-0 fw-bold">${item.titulo}</h6>
+                            <small class="text-muted">Cantidad: ${item.cantidad}</small>
+                        </div>
+                        <span class="text-muted">$${costoItem.toFixed(2)}</span>
+                    </li>
+                `;
+                contenedor.innerHTML += itemHTML;
+            });
+
+            // Actualizar interfaz con datos reales
+            badgeContador.textContent = totalArticulos;
+            subtotalElemento.textContent = `$${granTotal.toFixed(2)}`;
+            totalElemento.textContent = `$${granTotal.toFixed(2)}`;
+            totalRealCompra = granTotal; // Guardamos en la variable global
         });
 
         // Validación de Formulario y Captura de Datos Real
@@ -316,64 +327,49 @@
             
             if (form) {
                 form.addEventListener('submit', event => {
-                    // Prevenir el submit por defecto en cualquier caso
                     event.preventDefault()
                     event.stopPropagation()
 
                     if (form.checkValidity()) {
-                        // 1. Capturamos los datos reales escritos por el usuario
                         const nombreCliente = document.getElementById('nombre').value;
                         const apellidoCliente = document.getElementById('apellidos').value;
                         
-                        // Capturar el método de pago seleccionado
                         const radioMetodo = document.querySelector('input[name="metodoPago"]:checked');
                         let metodoSeleccionado = "Tarjeta de Crédito";
                         if (radioMetodo && radioMetodo.value === "debito") {
                             metodoSeleccionado = "Tarjeta de Débito";
                         }
 
-                        // 2. Construimos el objeto de la compra con datos reales
+                        // Construimos el objeto usando el TOTAL REAL calculado dinámicamente
                         const datosCompra = {
-                            idPedido: "FT-" + Math.floor(Math.random() * 90000 + 10000), // Genera ID 
+                            idPedido: "FT-" + Math.floor(Math.random() * 90000 + 10000), 
                             cliente: `${nombreCliente} ${apellidoCliente}`,
-                            total: 1145.00, // Total real que tienes en tu resumen de pago
+                            total: totalRealCompra, // <- AQUÍ YA NO ES FIJO
                             fecha: new Date().toLocaleDateString('es-MX'),
                             metodo: metodoSeleccionado
                         };
 
-                        // 3. Guardamos la sesión de compra actual para confirmacion.html
+                        // Guardamos para que confirmacion.html lo lea a la perfección
                         localStorage.setItem('ultimaCompra', JSON.stringify(datosCompra));
 
-                        // 4. Registramos la venta en el histórico para el Panel de Administración
+                        // Registramos la venta en el histórico para el Panel de Administración
                         let ventas = JSON.parse(localStorage.getItem('historicoVentas')) || [];
                         ventas.push(datosCompra);
                         localStorage.setItem('historicoVentas', JSON.stringify(ventas));
 
-                        // 5. Restamos stock en el inventario
-                        let inventario = JSON.parse(localStorage.getItem('inventario')) || [
-                            { id: "1", nombre: "Rotomartillo 1/2 Truper", stock: 15, precio: 1250 },
-                            { id: "2", nombre: "Pulidora Truper 1200W", stock: 8, precio: 1800 },
-                            { id: "3", nombre: "Kit de Tornillos Sujeción", stock: 50, precio: 350 }
-                        ];
-                        
-                        // Simulamos que resta 1 rotomartillo y 1 pulidora (los items de la compra)
-                        inventario = inventario.map(item => {
-                            if (item.id === "1" || item.id === "2") {
-                                item.stock = Math.max(0, item.stock - 1);
-                            }
-                            return item;
-                        });
-                        localStorage.setItem('inventario', JSON.stringify(inventario));
+                        // Vaciamos el carrito tras concretar la compra exitosa
+                        localStorage.removeItem('carrito');
 
-                        // 6. Redirigimos a la pantalla de éxito
-                        window.location.href = "confirmacion.html";
+                        // Redirigimos a la pantalla de éxito
+                        window.location.href = "confirmacion.php";
                     } else {
-                        // Si no es válido, activamos la visualización de errores de Bootstrap
                         form.classList.add('was-validated')
                     }
                 }, false)
             }
         })()
     </script>
+    <script src="../js/header-footer.js?v=2"></script>
+    <script src="../js/agregar-carrito.js"></script>
 </body>
 </html>

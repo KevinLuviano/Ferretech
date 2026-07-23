@@ -2,22 +2,22 @@
 <html>
 <head>
     <title>FerreTech</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/loginh.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
     
-    <div id="header-placeholder"></div>
+   <div id="header-placeholder"></div>
 
     <div class="contenedor-login">
         
         <div class="caja-formulario">
             
-            <h1 class="titulo-log">Inicio sesión Host :</h1>
+            <h1 class="titulo-log">Iniciar sesión :</h1>
             
-            <form id="formulario-host">
+            <form id="formulario-login">
                 <table class="tabla-form"> 
                     <tr>
                         <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
@@ -29,8 +29,12 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="botones-box">
-                         
-                            <button type="submit" class="btn-iniciar" style="width: 100%; border: none; cursor: pointer;">Iniciar sesión</button>
+                            <input type="submit" value="Iniciar sesión" class="btn-iniciar"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center; padding-top: 15px;">
+                            <a href="login-host.php" class="enlace-host" style="color: #0056b3; text-decoration: none; font-size: 0.9rem;">¿Eres Host? Inicia sesión aquí</a>
                         </td>
                     </tr>
                 </table>
@@ -43,38 +47,19 @@
     <div id="footer-placeholder"></div>
 
 </body>
+ 
+    <script src="../js/header-footer.js?v=2"></script>
+    <script src="../js/agregar-carrito.js"></script>
 
-<!-- Carga del Header -->
-<script>
-    fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-    })
-</script>
-
-<!-- Carga del Footer -->
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    })
-</script>
-
-<!-- Lógica de Validación de Seguridad para Host/Administrador -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const formulario = document.getElementById("formulario-host");
+        const formulario = document.getElementById("formulario-login");
         const inputEmail = document.getElementById("email");
         const inputPassword = document.getElementById("contraseña");
         const btnIniciar = document.querySelector(".btn-iniciar");
 
         let intentosFallidos = 0;
         const maxIntentos = 3;
-
-
-        const dominioRequerido = "@ferretech.com"; 
 
         formulario.addEventListener("submit", (evento) => {
             evento.preventDefault(); 
@@ -83,46 +68,45 @@
             const passwordValue = inputPassword.value.trim();
 
            
-            if (!emailValue.endsWith(dominioRequerido)) {
-                alert(`Acceso denegado: Solo se permiten correos corporativos autorizados (${dominioRequerido}).`);
-                inputEmail.style.border = "2px solid #dc3545";
-                setTimeout(() => inputEmail.style.border = "", 2000);
-                return;
-            }
-
-            if (emailValue === `admin${dominioRequerido}` && passwordValue === "Admin1234") {
-                alert("¡Acceso concedido! Redirigiendo al panel de administración...");
-                window.location.href = "PanelAdmi.html"; 
+            if (emailValue === "prueba@ferretech.com" && passwordValue === "Ferretech123") {
+                alert("¡Ingreso exitoso! Bienvenido a FerreTech.");
+                intentosFallidos = 0;
+                formulario.submit(); 
             } else {
                 intentosFallidos++;
                 
-       
+               
                 inputPassword.style.border = "2px solid #dc3545";
-                setTimeout(() => inputPassword.style.border = "", 2000);
+                inputEmail.style.border = "2px solid #dc3545";
+                setTimeout(() => {
+                    inputPassword.style.border = "";
+                    inputEmail.style.border = "";
+                }, 2000);
 
+               
                 if (intentosFallidos >= maxIntentos) {
                     let tiempoBloqueo = 15; 
                     btnIniciar.disabled = true;
-                    btnIniciar.style.backgroundColor = "#6c757d";
+                    btnIniciar.style.backgroundColor = "#6c757d"; 
                     btnIniciar.style.cursor = "not-allowed";
 
                     const cuentaRegresiva = setInterval(() => {
-                        btnIniciar.textContent = `Bloqueado (${tiempoBloqueo}s)`;
+                        btnIniciar.value = `Bloqueado (${tiempoBloqueo}s)`;
                         tiempoBloqueo--;
 
                         if (tiempoBloqueo < 0) {
                             clearInterval(cuentaRegresiva);
                             btnIniciar.disabled = false;
-                            btnIniciar.textContent = "Iniciar sesión";
-                            btnIniciar.style.backgroundColor = ""; 
+                            btnIniciar.value = "Iniciar sesión";
+                            btnIniciar.style.backgroundColor = "";
                             btnIniciar.style.cursor = "pointer";
-                            intentosFallidos = 0;
+                            intentosFallidos = 0; 
                         }
                     }, 1000);
 
-                    alert("Demasiados intentos fallidos. Botón de acceso bloqueado temporalmente.");
+                    alert("Has superado el límite de intentos. Botón bloqueado por seguridad.");
                 } else {
-                    alert(`Contraseña incorrecta para Host corporativo. Te quedan ${maxIntentos - intentosFallidos} intentos.`);
+                    alert(`Credenciales incorrectas. Te quedan ${maxIntentos - intentosFallidos} intentos.`);
                 }
             }
         });

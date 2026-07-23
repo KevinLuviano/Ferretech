@@ -42,29 +42,17 @@
                 </div>
             </div>
             
-            <a href="checkout.html" button class="btn-sig">Siguiente</a>
+            <a href="checkout.php" button class="btn-sig">Siguiente</a>
             
         </div>
 
     </div>
     <div id="footer-placeholder"></div>
+
+    <script src="../js/header-footer.js?v=2"></script>
+    <script src="../js/agregar-carrito.js"></script>
+    
 </body>
-
-<script>
-    fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-    });
-</script>
-
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

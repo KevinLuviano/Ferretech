@@ -25,7 +25,7 @@
                 </h1>
             </div>
             <div class="col text-end">
-                <a href="PanelAdmi.html" class="btn btn-outline-dark fw-semibold">← Volver al Panel</a>
+                <a href="PanelAdmi.php" class="btn btn-outline-dark fw-semibold">← Volver al Panel</a>
             </div>
         </div>
 
@@ -98,30 +98,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             const nombreAdministrador = "Juan Pérez (Admin)";
 
-            // 1. Cargar Header
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                    const navContenedor = document.querySelector('#header-placeholder .navbar-nav, #header-placeholder .navbar');
-                    if (navContenedor) {
-                        navContenedor.insertAdjacentHTML('beforeend', `
-                            <div class="ms-auto d-flex align-items-center">
-                                <span class="badge-admin">👤 Módulo: ${nombreAdministrador}</span>
-                            </div>
-                        `);
-                    }
-                })
-                .catch(err => console.error("Error cargando el header:", err));
-
-            // 2. Cargar Footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                })
-                .catch(err => console.error("Error cargando el footer:", err));
-
             // 3. Capturar el ID de la URL (Por si viene del botón "Gestionar")
             const urlParams = new URLSearchParams(window.location.search);
             const productoId = urlParams.get('id');
@@ -187,5 +163,9 @@
             renderizarInventario();
         });
     </script>
+          
+          <script src="../js/header-footer.js?v=2"></script>
+          <script src="../js/agregar-carrito.js"></script>
+
 </body>
 </html>

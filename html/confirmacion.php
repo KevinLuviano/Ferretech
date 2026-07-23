@@ -41,7 +41,7 @@
                 </h5>
             </div>
             
-            <a href="inicio.html" class="btn btn-primary w-100 py-2 fw-bold">Volver a la Tienda</a>
+            <a href="inicio.php" class="btn btn-primary w-100 py-2 fw-bold">Volver a la Tienda</a>
         </div>
 
                 </section>
@@ -52,21 +52,7 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Cargar Header
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                });
-
-            // Cargar Footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                });
-        });
+       
                         
             document.addEventListener("DOMContentLoaded", () => {
                 // 1. Leemos la información que guardó la página de checkout
@@ -100,5 +86,9 @@
             });
 
     </script>
+    
+          
+          <script src="../js/header-footer.js?v=2"></script>
+          <script src="../js/agregar-carrito.js"></script>
 </body>
 </html>
