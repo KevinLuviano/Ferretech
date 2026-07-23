@@ -115,7 +115,7 @@
 
     <div id="footer-placeholder"></div>
 
-     <script src="../js/header-footer.js"></script>
+    <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
 
 </body>

@@ -44,7 +44,7 @@
 
 </body>
 
-<script src="../js/header-footer.js"></script>
+    <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
 
 <!-- Lógica de Validación de Seguridad para Host/Administrador -->
@@ -77,7 +77,7 @@
 
             if (emailValue === `admin${dominioRequerido}` && passwordValue === "Admin1234") {
                 alert("¡Acceso concedido! Redirigiendo al panel de administración...");
-                window.location.href = "PanelAdmi.html"; 
+                window.location.href = "PanelAdmi.php"; 
             } else {
                 intentosFallidos++;
                 

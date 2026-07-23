@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center; padding-top: 15px;">
-                            <a href="login-host.html" class="enlace-host" style="color: #0056b3; text-decoration: none; font-size: 0.9rem;">¿Eres Host? Inicia sesión aquí</a>
+                            <a href="login-host.php" class="enlace-host" style="color: #0056b3; text-decoration: none; font-size: 0.9rem;">¿Eres Host? Inicia sesión aquí</a>
                         </td>
                     </tr>
                 </table>
@@ -47,7 +47,8 @@
     <div id="footer-placeholder"></div>
 
 </body>
-    <script src="../js/header-footer.js"></script>
+ 
+    <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
 
 <script>

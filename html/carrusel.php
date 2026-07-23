@@ -34,7 +34,7 @@
               <h2>Pulidoras Truper<br>de la mejor calidad</h2>
               <p>Potencia industrial de 1200W para acabados perfectos. Incluye garantía oficial .</p>
               <!-- Enlace y texto modificados -->
-              <a href="Categoria-herramientas.html" class="btn btn-accion">Ver catálogo</a>
+              <a href="Categoria-herramientas.php" class="btn btn-accion">Ver catálogo</a>
             </div>
             <div class="contenedor-imagen">
               <img src="../img/pulidoraIndustrial.jpg" alt="Pulidora Industrial" class="imagen-producto" height="200px" width="200px">
@@ -51,7 +51,7 @@
               <h2>Sujeción Absoluta<br>Precios de Mayoreo</h2>
               <p>Todo en tornillería de alta resistencia, taquetes y sistemas de fijación para concreto y metal.</p>
               
-              <a href="Categoria-Materiales.html" class="btn btn-accion">Ver materiales</a>
+              <a href="Categoria-Materiales.php" class="btn btn-accion">Ver materiales</a>
             </div>
             <div class="contenedor-imagen">
               <img src="../img/sistemadetornillos.jpg" class="imagen-producto" alt="Sistemas de fijación Truper" height="300px" width="350px">
@@ -67,7 +67,7 @@
               <h2>Rotomartillo 1/2"<br>+ Kit de Brocas </h2>
               <p>Equípate con el potente motor de 650W sobre baleros de bolas. Ideal para concreto, acero y madera.</p>
               
-              <a href="Categoria-herramientas.html" class="btn btn-accion">Ver catálogo</a>
+              <a href="Categoria-herramientas.php" class="btn btn-accion">Ver catálogo</a>
             </div>
             <div class="contenedor-imagen">
               <img src="../img/rotomartillo.png" class="imagen-producto" alt="Rotomartillo Truper Profesional" height="300px" width="350px">

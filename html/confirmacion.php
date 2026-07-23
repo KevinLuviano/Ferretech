@@ -41,7 +41,7 @@
                 </h5>
             </div>
             
-            <a href="inicio.html" class="btn btn-primary w-100 py-2 fw-bold">Volver a la Tienda</a>
+            <a href="inicio.php" class="btn btn-primary w-100 py-2 fw-bold">Volver a la Tienda</a>
         </div>
 
                 </section>
@@ -87,7 +87,8 @@
 
     </script>
     
-          <script src="../js/header-footer.js"></script>
+          
+          <script src="../js/header-footer.js?v=2"></script>
           <script src="../js/agregar-carrito.js"></script>
 </body>
 </html>

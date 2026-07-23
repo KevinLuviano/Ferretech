@@ -29,7 +29,7 @@
             </div>
             <!-- Botón extra para agregar productos directamente -->
             <div class="col text-end">
-                <a href="gestion.html" class="btn btn-dark fw-semibold px-4">➕ Agregar Nuevo Producto</a>
+                <a href="gestion.php" class="btn btn-dark fw-semibold px-4">➕ Agregar Nuevo Producto</a>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                             <td>45</td>
                             <td>$500</td>
                             <td>
-                                <a href="gestion.html?id=F-001" class="btn-accion-tabla px-4">Gestionar</a>
+                                <a href="gestion.php?id=F-001" class="btn-accion-tabla px-4">Gestionar</a>
                             </td>
                         </tr>
                         <tr>
@@ -68,7 +68,7 @@
                             <td>250</td>
                             <td>$25</td>
                             <td>
-                                <a href="gestion.html?id=F-S0055" class="btn-accion-tabla px-4">Gestionar</a>
+                                <a href="gestion.php?id=F-S0055" class="btn-accion-tabla px-4">Gestionar</a>
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +78,7 @@
                             <td>5</td>
                             <td>$700</td>
                             <td>
-                                <a href="gestion.html?id=F-5558" class="btn-accion-tabla px-4">Gestionar</a>
+                                <a href="gestion.php?id=F-5558" class="btn-accion-tabla px-4">Gestionar</a>
                             </td>
                         </tr>
                     </tbody>
@@ -122,7 +122,7 @@
                         contenedorAlertas.innerHTML += `
                             <div class="alert alert-warning d-flex justify-content-between align-items-center mb-2">
                                 <span>⚠️ Quedan solo <strong>${p.stock}</strong> unidades de <strong>${p.nombre}</strong></span>
-                                <a href="gestion.html?id=${p.id}" class="btn btn-sm btn-outline-dark">Surtir</a>
+                                <a href="gestion.php?id=${p.id}" class="btn btn-sm btn-outline-dark">Surtir</a>
                             </div>
                         `;
                     });
@@ -131,5 +131,6 @@
         });
     </script>
 </body>
- <script src="../js/header-footer.js"></script>
+ 
+    <script src="../js/header-footer.js?v=2"></script>
 </html>

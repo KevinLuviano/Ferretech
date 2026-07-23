@@ -58,7 +58,7 @@
     
 
     // 3. Cargar Carrusel 
-    fetch('carrusel.html')
+    fetch('carrusel.php')
         .then(response => {
             if (!response.ok) throw new Error("No se pudo cargar el archivo del carrusel");
             return response.text();
@@ -67,10 +67,11 @@
             document.getElementById('contenedor-carrusel').innerHTML = html;
         })
         .catch(error => console.error('Error cargando el componente:', error));
-            
-         
+
     </script>
-     <script src="../js/header-footer.js"></script>
+
+    
+    <script src="../js/header-footer.js?v=2"></script>
           <script src="../js/agregar-carrito.js"></script>
 </body>
 </html>

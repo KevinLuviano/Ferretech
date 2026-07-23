@@ -25,7 +25,7 @@
                 </h1>
             </div>
             <div class="col text-end">
-                <a href="PanelAdmi.html" class="btn btn-outline-dark fw-semibold">← Volver al Panel</a>
+                <a href="PanelAdmi.php" class="btn btn-outline-dark fw-semibold">← Volver al Panel</a>
             </div>
         </div>
 
@@ -163,8 +163,8 @@
             renderizarInventario();
         });
     </script>
-    
-          <script src="../js/header-footer.js"></script>
+          
+          <script src="../js/header-footer.js?v=2"></script>
           <script src="../js/agregar-carrito.js"></script>
 
 </body>

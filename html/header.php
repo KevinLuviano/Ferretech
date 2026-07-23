@@ -16,11 +16,11 @@
             <div class="menu">
                 <img src="../img/login.png" alt="Usuario" height="30">
                 <div class="enlaces-texto">
-                    <a href="login.html">Iniciar sesión</a> | <a href="Registro.html">Registrarse</a>
+                    <a href="login.php">Iniciar sesión</a> | <a href="Registro.php">Registrarse</a>
                 </div>
             </div>
 
-           <a href="carrito.html" class="menu" style="position: relative;">
+           <a href="carrito.php" class="menu" style="position: relative;">
                 <img src="../img/carrito.png" alt="Carrito" height="30">
                 <div>Carrito</div>
                 <span id="contador-carrito" class="notificacion-carrito">0</span>
@@ -32,7 +32,7 @@
 
     <nav class="header-inferior">
         <div class="nav">
-            <a href="inicio.html">Inicio</a>
+            <a href="Index.php">Inicio</a>
         </div>
 
         <div class="separador"></div>
@@ -40,8 +40,8 @@
         <details class="categorias">
             <summary>Categorías ▼</summary>
             <ul class="dropdown">
-                <li><a href="Categoria-Herramientas.html">Herramientas</a></li>
-                <li><a href="Categoria-Materiales.html">Materiales de Fijación</a></li>
+                <li><a href="Categoria-Herramientas.php">Herramientas</a></li>
+                <li><a href="Categoria-Materiales.php">Materiales de Fijación</a></li>
             </ul>
         </details>
     </nav>

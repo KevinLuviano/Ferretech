@@ -361,7 +361,7 @@
                         localStorage.removeItem('carrito');
 
                         // Redirigimos a la pantalla de éxito
-                        window.location.href = "confirmacion.html";
+                        window.location.href = "confirmacion.php";
                     } else {
                         form.classList.add('was-validated')
                     }
@@ -369,7 +369,7 @@
             }
         })()
     </script>
-    <script src="../js/header-footer.js"></script>
+    <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
 </body>
 </html>
