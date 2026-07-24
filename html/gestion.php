@@ -17,7 +17,7 @@
     <div id="header-placeholder"></div>
 
     <main class="container my-5">
-        <!-- Encabezado de sección con botón de retorno -->
+        
         <div class="row mb-4 align-items-center">
             <div class="col">
                 <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1" style="color: #000000;">
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <!-- Tarjeta del Formulario CRUD -->
+       
         <div class="card shadow-sm border-0 core-gestion-card">
             <div class="card-header bg-corporativo text-white text-center py-2 border-0">
                 <h4 class="mb-0 fw-semibold" style="letter-spacing: 0.5px;">Formulario del Producto</h4>
@@ -38,10 +38,10 @@
             <div class="card-body p-4">
                 <form id="form-gestion-producto">
                     <div class="row g-3">
-                        <!-- ID del Producto -->
+                        <!-- URL de la Imagen -->
                         <div class="col-md-6">
-                            <label for="prodId" class="form-label fw-bold">Identificación (ID)</label>
-                            <input type="text" class="form-control" id="prodId" placeholder="Ej: F-001" required>
+                            <label for="prodImagen" class="form-label fw-bold">URL de la Imagen del Producto</label>
+                            <input type="url" class="form-control" id="prodImagen" placeholder="https://ejemplo.com/imagen.jpg" required>
                         </div>
                         
                         <!-- Nombre del Producto -->
@@ -50,19 +50,25 @@
                             <input type="text" class="form-control" id="prodNombre" placeholder="Ej: Rotomartillo" required>
                         </div>
 
+                        <!-- Vista Previa de la Imagen -->
+                        <div class="col-12 text-center my-2">
+                            <div class="p-2 border rounded bg-light d-inline-block">
+                                <p class="small text-muted mb-1 fw-bold">Vista previa de la imagen:</p>
+                                <img id="imgPreview" src="https://via.placeholder.com/150?text=Sin+Imagen" alt="Vista Previa" class="img-thumbnail" style="max-height: 150px; object-fit: contain;">
+                            </div>
+                        </div>
+
                         <!-- Categoría -->
                         <div class="col-md-4">
                             <label for="prodCategoria" class="form-label fw-bold">Categoría</label>
                             <select class="form-select" id="prodCategoria" required>
                                 <option value="" selected disabled>Seleccionar...</option>
-                                
                                 <option value="Fijacion">Fijación</option>
-                                <option value="Manuales">Herramientas </option>
-                               
+                                <option value="Manuales">Herramientas</option>
                             </select>
                         </div>
 
-                        <!-- Cantidad en Stock -->
+                   
                         <div class="col-md-4">
                             <label for="prodStock" class="form-label fw-bold">Cantidad en Almacén (Stock)</label>
                             <input type="number" class="form-control" id="prodStock" min="0" placeholder="0" required>
@@ -75,11 +81,11 @@
                         </div>
                     </div>
 
-                    <!-- Panel de Acciones CRUD  -->
+                    
                     <div class="row mt-5 pt-3 border-top border-light-subtle text-center text-md-start">
                         <div class="col-md-8 mb-3 mb-md-0">
                             <button type="submit" class="btn btn-success btn-crud-accion me-2 fw-semibold">💾 Registrar / Guardar</button>
-                            <button type="button" class="btn btn-warning btn-crud-accion text-white fw-semibold">🔄 Actualizar Info</button>
+                            <button type="button" class="btn btn-info text-white btn-crud-accion fw-semibold" style="background-color: #0284c7; border-color: #0284c7;">🔄 Actualizar Info</button>
                         </div>
                         <div class="col-md-4 text-md-end">
                             <button type="button" class="btn btn-danger btn-crud-accion fw-semibold">🗑️ Eliminar Producto</button>
@@ -96,27 +102,42 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const nombreAdministrador = "Juan Pérez (Admin)";
+            const inputImagen = document.getElementById('prodImagen');
+            const imgPreview = document.getElementById('imgPreview');
 
-            // 3. Capturar el ID de la URL (Por si viene del botón "Gestionar")
+            // Actualiza la vista previa al escribir o pegar una URL
+            inputImagen.addEventListener('input', function() {
+                const url = this.value.trim();
+                if (url) {
+                    imgPreview.src = url;
+                } else {
+                    imgPreview.src = "https://via.placeholder.com/150?text=Sin+Imagen";
+                }
+            });
+
+            // En caso de que la imagen falle al cargar (URL rota o inválida)
+            imgPreview.addEventListener('error', function() {
+                this.src = "https://via.placeholder.com/150?text=Imagen+Invalida";
+            });
+
+            // Capturar la URL por si viene en los parámetros de la página
             const urlParams = new URLSearchParams(window.location.search);
-            const productoId = urlParams.get('id');
-            if(productoId) {
-                // Aquí en el backend o JS dinámico autocompletará los campos
-                document.getElementById('prodId').value = productoId;
-                document.getElementById('prodId').disabled = true; // Protege el ID si se edita
+            const imagenUrl = urlParams.get('imagen');
+            if (imagenUrl) {
+                inputImagen.value = imagenUrl;
+                imgPreview.src = imagenUrl;
             }
         });
+
         document.addEventListener("DOMContentLoaded", () => {
-    // 1. Base de datos inicial de productos (si no existe en localStorage, la creamos)
-    if (!localStorage.getItem('inventario')) {
-        const productosIniciales = [
-            { id: "1", nombre: "Rotomartillo 1/2 Truper", stock: 15, precio: 1250 },
-            { id: "2", nombre: "Pulidora Truper 1200W", stock: 8, precio: 1800 },
-            { id: "3", nombre: "Kit de Tornillos Sujeción", stock: 50, precio: 350 }
-        ];
-        localStorage.setItem('inventario', JSON.stringify(productosIniciales));
-    }
+            if (!localStorage.getItem('inventario')) {
+                const productosIniciales = [
+                    { id: "1", nombre: "Rotomartillo 1/2 Truper", stock: 15, precio: 1250, imagen: "" },
+                    { id: "2", nombre: "Pulidora Truper 1200W", stock: 8, precio: 1800, imagen: "" },
+                    { id: "3", nombre: "Kit de Tornillos Sujeción", stock: 50, precio: 350, imagen: "" }
+                ];
+                localStorage.setItem('inventario', JSON.stringify(productosIniciales));
+            }
 
             const tablaCuerpo = document.getElementById('tabla-inventario-cuerpo'); 
 
@@ -128,7 +149,7 @@
                 inventario.forEach(prod => {
                     const fila = document.createElement('tr');
                     fila.innerHTML = `
-                        <td>${prod.id}</td>
+                        <td><img src="${prod.imagen || 'https://via.placeholder.com/50'}" alt="${prod.nombre}" style="width: 50px; height: 50px; object-fit: cover;"></td>
                         <td>${prod.nombre}</td>
                         <td>$${prod.precio}</td>
                         <td>
@@ -142,7 +163,6 @@
                     tablaCuerpo.appendChild(fila);
                 });
 
-                // Evento para guardar cambios de stock individualmente
                 document.querySelectorAll('.btn-guardar').forEach(boton => {
                     boton.addEventListener('click', (e) => {
                         const idProd = e.target.getAttribute('data-id');
@@ -164,8 +184,8 @@
         });
     </script>
           
-          <script src="../js/header-footer.js?v=2"></script>
-          <script src="../js/agregar-carrito.js"></script>
+    <script src="../js/header-footer.js?v=2"></script>
+    <script src="../js/agregar-carrito.js"></script>
 
 </body>
 </html>
