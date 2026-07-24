@@ -17,36 +17,36 @@
             
             <h1 class="titulo-reg">Crear cuenta :</h1>
             
-            <form id="formulario-registro">
-                <table class="tabla-form"> 
-                    <tr>
-                        <td><label for="nombre" class="etiqueta">Nombre*</label></td>
-                        <td><input type="text" id="nombre" name="nombre" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Elizabeth " required /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="apellido" class="etiqueta">Apellido*</label></td>
-                        <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Luviano ventura" required /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
-                        <td><input type="email" id="email" name="email" class="entrada-reg" size="25" placeholder="correo@ferretech.com" required /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
-                        <td><input type="password" id="contraseña" name="contraseña" class="entrada-reg" size="25" required /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="confirmar_contraseña" class="etiqueta">Confirmar Contraseña*</label></td>
-                        <td><input type="password" id="confirmar_contraseña" name="confirmar_contraseña" class="entrada-reg" size="25" required /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="botones-box">
-                            <input type="reset" value="limpiar datos" class="btn-limpiar"/>
-                            <input type="submit" value="Registrarse" class="btn-registrar"/>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+         <form id="formulario-registro" action="guardar_registro.php" method="POST">
+    <table class="tabla-form"> 
+        <tr>
+            <td><label for="nombre" class="etiqueta">Nombre*</label></td>
+            <td><input type="text" id="nombre" name="nombre" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Elizabeth " required /></td>
+        </tr>
+        <tr>
+            <td><label for="apellido" class="etiqueta">Apellido*</label></td>
+            <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Luviano ventura" required /></td>
+        </tr>
+        <tr>
+            <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
+            <td><input type="email" id="email" name="email" class="entrada-reg" size="25" placeholder="correo@ferretech.com" required /></td>
+        </tr>
+        <tr>
+            <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
+            <td><input type="password" id="contraseña" name="contrasena" class="entrada-reg" size="25" required /></td>
+        </tr>
+        <tr>
+            <td><label for="confirmar_contraseña" class="etiqueta">Confirmar Contraseña*</label></td>
+            <td><input type="password" id="confirmar_contraseña" name="confirmar_contraseña" class="entrada-reg" size="25" required /></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="botones-box">
+                <input type="reset" value="limpiar datos" class="btn-limpiar"/>
+                <input type="submit" value="Registrarse" class="btn-registrar"/>
+            </td>
+        </tr>
+    </table>
+        </form>
 
         </div>
 
