@@ -23,6 +23,19 @@ fetch('/Ferretech/html/header.php')
   .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
       actualizarContador();
+
+      let btnLogout = document.getElementById('btn-logout');
+      
+      if (btnLogout) {
+          btnLogout.addEventListener('click', function(e) {
+              e.preventDefault(); 
+ 
+              fetch('/Ferretech/html/header.php?cerrar_sesion=true')
+                  .then(() => {
+                      window.location.reload();
+                  });
+          });
+      }
   });
 
 fetch('/Ferretech/html/footer.php')

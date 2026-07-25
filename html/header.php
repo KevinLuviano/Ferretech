@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_GET['cerrar_sesion'])) {
+    session_destroy();
+    exit(); 
+}
+?>
+
 <header class="header">
 
     <div class="header-superior">
@@ -16,8 +24,18 @@
             <div class="menu">
                 <img src="../img/login.png" alt="Usuario" height="30">
                 <div class="enlaces-texto">
-                    <a href="login.php">Iniciar sesión</a> | <a href="Registro.php">Registrarse</a>
-                </div>
+    <?php if (isset($_SESSION["nombre"])) { ?>
+        
+        <span>Hola, <?php echo $_SESSION["nombre"]; ?></span>
+        &nbsp; | &nbsp;
+        <a href="cerrar.php" id="btn-logout">Cerrar sesión</a>
+        
+    <?php } else { ?>
+        
+        <a href="login.php">Iniciar sesión</a> | <a href="Registro.php">Registrarse</a>
+        
+    <?php } ?>
+</div>
             </div>
 
            <a href="carrito.php" class="menu" style="position: relative;">
