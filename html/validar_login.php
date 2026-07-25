@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["contrasena"];
 
 
-    $sql = "SELECT id_usuario, nombre, contraseña FROM Usuarios WHERE correo = ?";
+    $sql = "SELECT id_usuario, nombre, contraseña, carrito_guardado FROM Usuarios WHERE correo = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $correo);
     $stmt->execute();
@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </script>";
             exit();
    
-        }
         } else {
             echo "<script>
                     alert('Contraseña incorrecta.');

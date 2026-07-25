@@ -18,6 +18,28 @@ function actualizarContador() {
     }
 }
 
+document.addEventListener("click", function(e) {
+    if (e.target && e.target.id === "btn-logout") {
+        e.preventDefault(); 
+
+        let carrito = localStorage.getItem('carrito') || "[]";
+
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'cerrar.php';
+
+        let input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'carrito';
+        input.value = carrito;
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        
+        form.submit();
+    }
+});
+
 fetch('/Ferretech/html/header.php')
   .then(response => response.text())
   .then(data => {
