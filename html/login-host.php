@@ -46,7 +46,6 @@
 
     <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
-
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const formulario = document.getElementById("formulario-host");
@@ -64,13 +63,11 @@
         formulario.addEventListener("submit", (evento) => {
             const emailValue = inputEmail.value.trim();
 
-            
             if (!emailValue.endsWith(dominioRequerido)) {
                 evento.preventDefault(); 
                 alert(`Acceso denegado: Solo se permiten correos corporativos autorizados (${dominioRequerido}).`);
                 inputEmail.style.border = "2px solid #dc3545";
                 setTimeout(() => inputEmail.style.border = "", 2000);
-<<<<<<< Updated upstream:html/login-host.html
                 return;
             }
 
@@ -80,7 +77,6 @@
             } else {
                 intentosFallidos++;
                 
-       
                 inputPassword.style.border = "2px solid #dc3545";
                 setTimeout(() => inputPassword.style.border = "", 2000);
 
@@ -108,8 +104,6 @@
                 } else {
                     alert(`Contraseña incorrecta para Host corporativo. Te quedan ${maxIntentos - intentosFallidos} intentos.`);
                 }
-=======
->>>>>>> Stashed changes:html/login-host.php
             }
         });
     });

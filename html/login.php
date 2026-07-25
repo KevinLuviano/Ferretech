@@ -15,35 +15,6 @@
         
         <div class="caja-formulario">
             
-            <h1 class="titulo-log">Iniciar sesión :</h1>
-            
-<<<<<<< Updated upstream:html/login.html
-<<<<<<< Updated upstream:html/login.html
-            <form id="formulario-login">
-                <table class="tabla-form"> 
-                    <tr>
-                        <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
-                        <td><input type="email" id="email" name="email" class="entrada-log" size="25" placeholder="correo@ferretech.com" required /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
-                        <td><input type="password" id="contraseña" name="contraseña" class="entrada-log" size="25" required /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="botones-box">
-                            <input type="submit" value="Iniciar sesión" class="btn-iniciar"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: center; padding-top: 15px;">
-                            <a href="login-host.php" class="enlace-host" style="color: #0056b3; text-decoration: none; font-size: 0.9rem;">¿Eres Host? Inicia sesión aquí</a>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-=======
-=======
->>>>>>> Stashed changes:html/login.php
             <form id="formulario-login" action="validar_login.php" method="POST">
         <table class="tabla-form"> 
             <tr>
