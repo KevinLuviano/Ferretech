@@ -17,14 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $resultado->fetch_assoc();
         
    
-        if (password_verify($password, $usuario["contraseña"])) {
+      if (password_verify($password, $usuario["contraseña"])) {
         
             $_SESSION["id_usuario"] = $usuario["id_usuario"];
             $_SESSION["nombre"] = $usuario["nombre"];
-            
- 
-            header("Location: Index.php");
+
+            $carrito_bd = !empty($usuario["carrito_guardado"]) ? $usuario["carrito_guardado"] : '[]';
+
+            echo "<script>
+                    localStorage.setItem('carrito', '" . addslashes($carrito_bd) . "');
+                    window.location.href = 'Index.php';
+                  </script>";
             exit();
+   
+        }
         } else {
             echo "<script>
                     alert('Contraseña incorrecta.');
