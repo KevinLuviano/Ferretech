@@ -18,6 +18,7 @@
             <h1 class="titulo-log">Iniciar sesión :</h1>
             
 <<<<<<< Updated upstream:html/login.html
+<<<<<<< Updated upstream:html/login.html
             <form id="formulario-login">
                 <table class="tabla-form"> 
                     <tr>
@@ -41,6 +42,8 @@
                 </table>
             </form>
 =======
+=======
+>>>>>>> Stashed changes:html/login.php
             <form id="formulario-login" action="validar_login.php" method="POST">
         <table class="tabla-form"> 
             <tr>
@@ -63,7 +66,6 @@
             </tr>
         </table>
          </form>
->>>>>>> Stashed changes:html/login.php
 
         </div>
 
