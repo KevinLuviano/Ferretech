@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (isset($_GET['cerrar_sesion'])) {
-    session_destroy();
-    exit(); 
-}
 ?>
 
 <header class="header">
@@ -15,8 +11,8 @@ if (isset($_GET['cerrar_sesion'])) {
             <h1>FERRETECH</h1>
         </div>
 
-        <form class="buscador">
-            <input type="search" placeholder="Buscar...">
+        <form class="buscador" action="buscador.php" method="GET">
+         <input type="search" name="q" placeholder="Buscar..." required>
         </form>
 
         <div class="carrito-usuario">
