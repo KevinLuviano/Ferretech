@@ -44,7 +44,7 @@
 
 </body>
 
-<script src="../js/header-footer.js"></script>
+    <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
 
 <script>
@@ -70,49 +70,6 @@
                 alert(`Acceso denegado: Solo se permiten correos corporativos autorizados (${dominioRequerido}).`);
                 inputEmail.style.border = "2px solid #dc3545";
                 setTimeout(() => inputEmail.style.border = "", 2000);
-<<<<<<< Updated upstream:html/login-host.html
-<<<<<<< Updated upstream:html/login-host.html
-                return;
-            }
-
-            if (emailValue === `admin${dominioRequerido}` && passwordValue === "Admin1234") {
-                alert("¡Acceso concedido! Redirigiendo al panel de administración...");
-                window.location.href = "PanelAdmi.html"; 
-            } else {
-                intentosFallidos++;
-                
-       
-                inputPassword.style.border = "2px solid #dc3545";
-                setTimeout(() => inputPassword.style.border = "", 2000);
-
-                if (intentosFallidos >= maxIntentos) {
-                    let tiempoBloqueo = 15; 
-                    btnIniciar.disabled = true;
-                    btnIniciar.style.backgroundColor = "#6c757d";
-                    btnIniciar.style.cursor = "not-allowed";
-
-                    const cuentaRegresiva = setInterval(() => {
-                        btnIniciar.textContent = `Bloqueado (${tiempoBloqueo}s)`;
-                        tiempoBloqueo--;
-
-                        if (tiempoBloqueo < 0) {
-                            clearInterval(cuentaRegresiva);
-                            btnIniciar.disabled = false;
-                            btnIniciar.textContent = "Iniciar sesión";
-                            btnIniciar.style.backgroundColor = ""; 
-                            btnIniciar.style.cursor = "pointer";
-                            intentosFallidos = 0;
-                        }
-                    }, 1000);
-
-                    alert("Demasiados intentos fallidos. Botón de acceso bloqueado temporalmente.");
-                } else {
-                    alert(`Contraseña incorrecta para Host corporativo. Te quedan ${maxIntentos - intentosFallidos} intentos.`);
-                }
-=======
->>>>>>> Stashed changes:html/login-host.php
-=======
->>>>>>> Stashed changes:html/login-host.php
             }
         });
     });
