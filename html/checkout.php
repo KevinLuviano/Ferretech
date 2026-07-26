@@ -10,6 +10,15 @@
     <link href="../Css/checkout.css" rel="stylesheet">
     <link href="../Css/header.css" rel="stylesheet">
     <link href="../Css/footer.css" rel="stylesheet">
+
+   <script>
+    let carritoCheck = JSON.parse(localStorage.getItem('carrito')) || [];
+    if (carritoCheck.length === 0) {
+        sessionStorage.setItem('avisoVacio', 'true');
+        window.location.href = 'carrito.php';
+    }
+</script>
+
 </head>
 <body>
     <div id="header-placeholder"></div>

@@ -158,6 +158,12 @@
 
        
         renderizarCarrito();
+
+if (sessionStorage.getItem('avisoVacio') === 'true') {
+    alert("Tu carrito está vacío. No puedes proceder al pago.");
+    sessionStorage.removeItem('avisoVacio');
+}
+
     });
 </script>
 
