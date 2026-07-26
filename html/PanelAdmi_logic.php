@@ -1,7 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION["es_host"]) || $_SESSION["es_host"] !== true) {
+    header("Location: login-host.php");
+    exit();
+}
+
 require_once 'connection.php';
 
-
+// Consulta para listar los productos con el nombre de su categoría asociada
 $sql_productos = "
     SELECT 
         p.id_producto, 
@@ -24,7 +30,7 @@ if ($resultado_productos && $resultado_productos->num_rows > 0) {
     }
 }
 
-
+// Ventas totales e ingresos directo desde la tabla Pedidos
 $sql_ventas = "SELECT SUM(precio * cantidad) AS total_ingresos, SUM(cantidad) AS total_unidades FROM Pedidos";
 $res_ventas = $conexion->query($sql_ventas);
 $totales = $res_ventas ? $res_ventas->fetch_assoc() : ['total_ingresos' => 0, 'total_unidades' => 0];
@@ -32,7 +38,7 @@ $totales = $res_ventas ? $res_ventas->fetch_assoc() : ['total_ingresos' => 0, 't
 $total_ingresos = $totales['total_ingresos'] ?? 0;
 $total_ventas = $totales['total_unidades'] ?? 0;
 
-
+// Filtrar en PHP aquellos con stock <= 5
 $productos_criticos = array_filter($productos, function($prod) {
     return $prod['stock'] <= 5;
 });
