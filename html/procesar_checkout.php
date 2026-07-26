@@ -1,67 +1,129 @@
 <?php
-session_start();
-header('Content-Type: application/json');
+error_reporting(0);
+ini_set('display_errors', 0);
 
-// Verificar autenticación
-if (!isset($_SESSION['id_usuario'])) {
+session_start();
+header('Content-Type: application/json; charset=utf-8');
+
+// 1. Obtener ID de usuario buscando en las variables de sesión más comunes
+$id_usuario = $_SESSION['id_usuario'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id'] ?? null;
+
+if (!$id_usuario) {
     echo json_encode([
         'success' => false, 
-        'message' => 'Tu sesión ha expirado o no estás autenticado.'
+        'message' => 'Tu sesión ha expirado o no has iniciado sesión.'
+    ]);
+    exit();
+}
+
+// 2. Incluir conexión
+if (!file_exists('connection.php')) {
+    echo json_encode([
+        'success' => false, 
+        'message' => 'No se encontró el archivo connection.php'
     ]);
     exit();
 }
 
 require_once 'connection.php';
 
+$db = null;
+if (isset($conexion)) {
+    $db = $conexion;
+} elseif (isset($conn)) {
+    $db = $conn;
+}
+
+if (!$db) {
+    echo json_encode([
+        'success' => false, 
+        'message' => 'No se detectó una variable de conexión válida en connection.php'
+    ]);
+    exit();
+}
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener JSON del cuerpo de la petición HTTP
+    
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
-    $id_usuario = $_SESSION['id_usuario'];
-    $direccion = trim($data['direccion'] ?? '');
-    $metodo_pago = trim($data['metodo_pago'] ?? '');
+    $direccion  = trim($data['direccion'] ?? '');
+    $telefono   = trim($data['telefono'] ?? '');
+    $carrito    = $data['carrito'] ?? [];
 
-    if (empty($direccion) || empty($metodo_pago)) {
+    if (empty($direccion)) {
         echo json_encode([
             'success' => false, 
-            'message' => 'Por favor completa todos los campos requeridos.'
+            'message' => 'Por favor ingresa una dirección válida.'
         ]);
         exit();
     }
 
-    $sql = "INSERT INTO Pedidos (id_usuario, direccion_envio, metodo_pago, fecha_pedido) VALUES (?, ?, ?, NOW())";
-    $stmt = $conexion->prepare($sql);
+    if (empty($carrito)) {
+        echo json_encode([
+            'success' => false, 
+            'message' => 'El carrito está vacío.'
+        ]);
+        exit();
+    }
 
-    if ($stmt) {
-        $stmt->bind_param("iss", $id_usuario, $direccion, $metodo_pago);
-        
-        if ($stmt->execute()) {
-            $id_pedido = $stmt->insert_id;
-            $stmt->close();
+    try {
+        // Verificar si el id_usuario realmente existe en la tabla 'usuarios'
+        $checkUser = $db->prepare("SELECT id_usuario FROM usuarios WHERE id_usuario = ?");
+        $checkUser->bind_param("i", $id_usuario);
+        $checkUser->execute();
+        $resUser = $checkUser->get_result();
 
-            echo json_encode([
-                'success' => true,
-                'idPedido' => $id_pedido,
-                'cliente' => $id_usuario
-            ]);
-            exit();
-        } else {
-            $error = $stmt->error;
-            $stmt->close();
-            echo json_encode([
-                'success' => false, 
-                'message' => 'Error al registrar el pedido: ' . $error
-            ]);
-            exit();
+        if ($resUser->num_rows === 0) {
+            // Si el usuario guardado en la sesión no existe en la BD, buscamos el primer usuario existente
+            $firstUser = $db->query("SELECT id_usuario FROM usuarios LIMIT 1");
+            if ($row = $firstUser->fetch_assoc()) {
+                $id_usuario = $row['id_usuario'];
+            } else {
+                echo json_encode([
+                    'success' => false, 
+                    'message' => 'No hay ningún usuario registrado en la tabla usuarios de la base de datos.'
+                ]);
+                exit();
+            }
         }
-    } else {
+        $checkUser->close();
+
+        // Consulta SQL ajustada a la tabla 'pedidos'
+        $sql = "INSERT INTO pedidos (id_producto, id_usuario, precio, cantidad, direccion, telefono_contacto, fecha_pedido) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+        $stmt = $db->prepare($sql);
+
+        $id_ultimo_pedido = 0;
+
+        foreach ($carrito as $item) {
+            $id_producto = (int)($item['id'] ?? $item['id_producto'] ?? 1);
+            $precio      = (float)($item['precio'] ?? 0);
+            $cantidad    = (int)($item['cantidad'] ?? 1);
+
+            $stmt->bind_param("iidiss", $id_producto, $id_usuario, $precio, $cantidad, $direccion, $telefono);
+            $stmt->execute();
+            
+            $id_ultimo_pedido = $stmt->insert_id;
+        }
+
+        $stmt->close();
+
+        echo json_encode([
+            'success' => true,
+            'idPedido' => $id_ultimo_pedido
+        ]);
+        exit();
+
+    } catch (Exception $e) {
         echo json_encode([
             'success' => false, 
-            'message' => 'Error en la consulta de base de datos.'
+            'message' => 'Error de MySQL: ' . $e->getMessage()
         ]);
         exit();
     }
+
 } else {
     echo json_encode([
         'success' => false, 
