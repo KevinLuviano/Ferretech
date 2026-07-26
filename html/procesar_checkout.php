@@ -110,6 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->close();
 
+        $_SESSION['pedido_completado'] = true;
+
         echo json_encode([
             'success' => true,
             'idPedido' => $id_ultimo_pedido

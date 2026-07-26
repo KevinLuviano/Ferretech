@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['pedido_completado']) || $_SESSION['pedido_completado'] !== true) {
+    header("Location: Index.php");
+    exit(); 
+}
+unset($_SESSION['pedido_completado']);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,7 +47,7 @@
                         </h5>
                     </div>
                     
-                    <a href="inicio.php" class="btn btn-primary w-100 py-2 fw-bold">Volver a la Tienda</a>
+                    <a href="Index.php" class="btn btn-primary w-100 py-2 fw-bold">Volver a la Tienda</a>
                 </div>
             </div>
         </div>
