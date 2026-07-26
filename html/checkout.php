@@ -7,13 +7,11 @@
     <title>FerreTech - Checkout</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link href="../Css/checkout.css" rel="stylesheet">
     <link href="../Css/header.css" rel="stylesheet">
     <link href="../Css/footer.css" rel="stylesheet">
 </head>
 <body>
-  
     <div id="header-placeholder"></div>
 
     <main class="container my-5">
@@ -30,7 +28,6 @@
                 <h3 class="mb-4 text-corporativo fw-bold">Detalles de Envío</h3>
                 <form id="form-checkout" class="needs-validation" novalidate>
                     <div class="row g-3">
-                       
                         <div class="col-sm-6">
                             <label for="nombre" class="form-label">Nombre(s)</label>
                             <input 
@@ -45,7 +42,6 @@
                             <div class="invalid-feedback">Por favor, ingresa un nombre válido (solo letras).</div>
                         </div>
 
-                       
                         <div class="col-sm-6">
                             <label for="apellidos" class="form-label">Apellidos</label>
                             <input 
@@ -60,7 +56,6 @@
                             <div class="invalid-feedback">Por favor, ingresa apellidos válidos (solo letras).</div>
                         </div>
 
-                        
                         <div class="col-12">
                             <label for="correo" class="form-label">Correo electrónico</label>
                             <input 
@@ -73,7 +68,6 @@
                             <div class="invalid-feedback">Por favor, ingresa un correo electrónico válido.</div>
                         </div>
 
-                       
                         <div class="col-12">
                             <label for="direccion" class="form-label">Calle y Número</label>
                             <input 
@@ -86,7 +80,6 @@
                             <div class="invalid-feedback">Por favor, ingresa una dirección de envío válida.</div>
                         </div>
 
-                       
                         <div class="col-md-5">
                             <label for="estado" class="form-label">Estado</label>
                             <select class="form-select" id="estado" required>
@@ -99,7 +92,6 @@
                             <div class="invalid-feedback">Por favor, selecciona un estado de la lista.</div>
                         </div>
 
-                       
                         <div class="col-md-4">
                             <label for="ciudad" class="form-label">Municipio / Alcaldía</label>
                             <input 
@@ -146,7 +138,6 @@
                     </div>
 
                     <div class="row gy-3 mt-2" id="datos-tarjeta">
-                       
                         <div class="col-md-6">
                             <label for="cc-nombre" class="form-label">Nombre en la tarjeta</label>
                             <input 
@@ -161,7 +152,6 @@
                             <div class="invalid-feedback">Ingresa el nombre del titular (solo letras).</div>
                         </div>
 
-                       
                         <div class="col-md-6">
                             <label for="cc-numero" class="form-label">Número de tarjeta</label>
                             <input 
@@ -178,7 +168,6 @@
                             <div class="invalid-feedback">Ingresa un número de tarjeta válido de 16 dígitos.</div>
                         </div>
 
-                       
                         <div class="col-md-3">
                             <label for="cc-expiracion" class="form-label">Expiración</label>
                             <input 
@@ -194,7 +183,6 @@
                             >
                             <div class="invalid-feedback">Formato inválido. Usa MM/AA (Mes 01-12).</div>
                         </div>
-
 
                         <div class="col-md-3">
                             <label for="cc-cvv" class="form-label">CVV</label>
@@ -219,7 +207,6 @@
                 </form>
             </div>
 
-            
             <div class="col-lg-5 col-md-12">
                 <div class="resumen-fijo">
                     <h3 class="d-flex justify-content-between align-items-center mb-4">
@@ -228,7 +215,6 @@
                     </h3>
                     
                     <ul class="list-group mb-3 shadow-sm">
-                        <!-- JS inyectará dinámicamente los productos del carrito real -->
                         <div id="checkout-contenedor-items"></div>
 
                         <li class="list-group-item d-flex justify-content-between bg-light px-3 py-2">
@@ -254,10 +240,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-       
         let totalRealCompra = 0;
 
-      
         function formatCardNumber(input) {
             let value = input.value.replace(/\D/g, '');
             let formatted = value.match(/.{1,4}/g);
@@ -273,14 +257,12 @@
             }
         }
 
-        
         document.addEventListener("DOMContentLoaded", () => {
             const contenedor = document.getElementById("checkout-contenedor-items");
             const subtotalElemento = document.getElementById("checkout-subtotal");
             const totalElemento = document.getElementById("checkout-total");
             const badgeContador = document.getElementById("contador-productos-badge");
 
-            
             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             
             if (carrito.length === 0) {
@@ -294,7 +276,7 @@
 
             let granTotal = 0;
             let totalArticulos = 0;
-            contenedor.innerHTML = ""; // Limpiar estáticos
+            contenedor.innerHTML = "";
 
             carrito.forEach(item => {
                 const costoItem = item.precio * item.cantidad;
@@ -313,22 +295,20 @@
                 contenedor.innerHTML += itemHTML;
             });
 
-           
             badgeContador.textContent = totalArticulos;
             subtotalElemento.textContent = `$${granTotal.toFixed(2)}`;
             totalElemento.textContent = `$${granTotal.toFixed(2)}`;
             totalRealCompra = granTotal;
         });
 
-        
         (() => {
             'use strict'
-            const form = document.getElementById('form-checkout')
+            const form = document.getElementById('form-checkout');
             
             if (form) {
                 form.addEventListener('submit', async event => {
-                    event.preventDefault()
-                    event.stopPropagation()
+                    event.preventDefault();
+                    event.stopPropagation();
 
                     if (form.checkValidity()) {
                         const nombreCliente = document.getElementById('nombre').value;
@@ -346,18 +326,17 @@
 
                         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-                        
                         const payload = {
                             nombre: nombreCliente,
                             apellidos: apellidoCliente,
                             correo: correoCliente,
                             direccion: `${direccionCliente}, ${ciudadCliente}, ${estadoCliente}`,
+                            metodo_pago: metodoSeleccionado,
                             carrito: carrito,
                             total: totalRealCompra
                         };
 
                         try {
-                            
                             const respuesta = await fetch('procesar_checkout.php', {
                                 method: 'POST',
                                 headers: {
@@ -369,45 +348,36 @@
                             const resultado = await respuesta.json();
 
                             if (resultado.success) {
+                                // Armar objeto de compra para la pantalla de confirmación
                                 const datosCompra = {
-                                    idPedido: resultado.idPedido, 
-                                    cliente: resultado.cliente,
+                                    idPedido: resultado.idPedido,
+                                    cliente: `${nombreCliente} ${apellidoCliente}`,
                                     total: totalRealCompra,
                                     fecha: new Date().toLocaleDateString('es-MX'),
                                     metodo: metodoSeleccionado
                                 };
 
-                               
+                                // Guardar resumen de compra en localStorage
                                 localStorage.setItem('ultimaCompra', JSON.stringify(datosCompra));
 
-                                
+                                // Vaciar carrito activo
                                 localStorage.removeItem('carrito');
 
-                                
+                                // Redirigir a la pantalla de confirmación
                                 window.location.href = "confirmacion.php";
                             } else {
-                                alert("Ocurrió un error al procesar el pedido: " + resultado.message);
+                                alert("Ocurrió un error al procesar el pedido: " + (resultado.message || "Error desconocido"));
                             }
                         } catch (error) {
                             console.error("Error en la petición:", error);
                             alert("Error al conectar con el servidor.");
                         }
-
-<<<<<<< Updated upstream:html/checkout.html
-                        // Redirigimos a la pantalla de éxito
-<<<<<<< HEAD:html/checkout.php
-                        window.location.href = "confirmacion.php";
-=======
-                        window.location.href = "confirmacion.html";
-=======
->>>>>>> Stashed changes:html/checkout.php
->>>>>>> checkout:html/checkout.html
                     } else {
-                        form.classList.add('was-validated')
+                        form.classList.add('was-validated');
                     }
-                }, false)
+                }, false);
             }
-        })()
+        })();
     </script>
     <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>

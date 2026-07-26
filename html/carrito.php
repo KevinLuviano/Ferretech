@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <a href="checkout.php" button class="btn-sig">Siguiente</a>
+<a href="checkout.php" class="btn-sig">Siguiente</a>
             
         </div>
 
@@ -51,8 +51,6 @@
 
     <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
-    
-</body>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -78,7 +76,7 @@
                 const subtotal = item.precio * item.cantidad;
                 granTotal += subtotal;
 
-                // Creamos el HTML de la tarjeta usando tus clases CSS originales
+               
                 const itemHTML = `
                     <div class="item" data-index="${index}">
                         <div class="prod-info">
@@ -147,6 +145,9 @@
             localStorage.setItem('carrito', JSON.stringify(carrito));
             renderizarCarrito();
             
+            if (typeof actualizarContador === 'function') {
+                actualizarContador();
+            }
            
             totalPagarElemento.style.transform = "scale(1.08)";
             totalPagarElemento.style.transition = "transform 0.1s ease";
@@ -159,4 +160,7 @@
         renderizarCarrito();
     });
 </script>
+
+</body>
+
 </html>
