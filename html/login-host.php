@@ -3,7 +3,7 @@
 <head>
     <title>FerreTech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/loginh.css">
 </head>
@@ -29,7 +29,6 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="botones-box">
-                         
                             <button type="submit" class="btn-iniciar" style="width: 100%; border: none; cursor: pointer;">Iniciar sesión</button>
                         </td>
                     </tr>
@@ -55,7 +54,9 @@
         if (urlParams.get('error') === 'contrasena_incorrecta') {
             alert("Contraseña incorrecta para Host corporativo.");
         } else if (urlParams.get('error') === 'usuario_no_encontrado') {
-            alert("El correo corporativo no está registrado.");
+            alert("El correo corporativo no está registrado o no tiene el rol de Host.");
+        } else if (urlParams.get('error') === 'campos_vacios') {
+            alert("Por favor, completa todos los campos.");
         }
 
         const dominioRequerido = "@ferretech.com"; 
