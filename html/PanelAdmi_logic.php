@@ -1,5 +1,4 @@
 <?php
-
 require_once 'connection.php';
 
 
@@ -24,6 +23,14 @@ if ($resultado_productos && $resultado_productos->num_rows > 0) {
         $productos[] = $row;
     }
 }
+
+
+$sql_ventas = "SELECT SUM(precio * cantidad) AS total_ingresos, SUM(cantidad) AS total_unidades FROM Pedidos";
+$res_ventas = $conexion->query($sql_ventas);
+$totales = $res_ventas ? $res_ventas->fetch_assoc() : ['total_ingresos' => 0, 'total_unidades' => 0];
+
+$total_ingresos = $totales['total_ingresos'] ?? 0;
+$total_ventas = $totales['total_unidades'] ?? 0;
 
 
 $productos_criticos = array_filter($productos, function($prod) {
