@@ -1,0 +1,70 @@
+<?php
+require_once("connection.php");
+
+$sql = "SELECT p.id_producto, p.nombre_producto, p.precio, p.url_imagen 
+        FROM Productos p
+        INNER JOIN Categorias c ON p.id_categoria = c.id_categoria
+        WHERE c.nombre_categoria = 'Materiales'";
+
+$resultado = $conexion->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FerreTech - Herramientas</title>
+
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/categorias.css">
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="categoria">
+            <h2>MATERIALES DE FIJACIÓN</h2>
+        </section>
+
+        <section class="grid-productos">
+            <?php
+            if ($resultado->num_rows > 0) {
+
+                while ($fila = $resultado->fetch_assoc()) {
+            ?>
+                    <article class="producto">
+                        <div class="imagen-producto">
+                            <img src="<?php echo $fila["url_imagen"]; ?>" alt="<?php echo $fila["nombre_producto"]; ?>">
+                        </div>
+                        <div class="info-producto">
+                            <h3><?php echo $fila["nombre_producto"]; ?></h3>
+                            
+                            <p class="precio">$<?php echo number_format($fila["precio"], 2); ?></p>
+                            
+                            <button class="btn-agregar" data-id="<?php echo $fila["id_producto"]; ?>">Agregar</button>
+                        </div>
+                    </article>
+            <?php
+                }
+                
+            } else {
+                echo "<h3 style='grid-column: 1 / -1; text-align: center; margin-top: 50px;'>No hay herramientas disponibles por el momento.</h3>";
+            }
+            $conexion->close();
+            ?>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../js/header-footer.js?v=2"></script>
+    <script src="../js/agregar-carrito.js"></script>
+
+</body>
+
+</html>

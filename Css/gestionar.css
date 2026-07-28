@@ -1,0 +1,38 @@
+
+
+
+.bg-corporativo {
+    background-color: #212529 !important; 
+}
+
+/* Tarjeta contenedora del editor */
+.core-gestion-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* Modificaciones visuales a los campos del formulario para legibilidad */
+.form-control:focus, .form-select:focus {
+    border-color: #212529;
+    box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0.15);
+}
+
+/* Botones de acción del CRUD */
+.btn-crud-accion {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Ajustes a los distintivos de módulo Admin */
+.badge-admin {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #ced4da;
+}

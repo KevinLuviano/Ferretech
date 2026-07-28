@@ -42,16 +42,16 @@
                 </div>
             </div>
             
-            <a href="checkout.html" class="btn-sig">Siguiente</a>
+<a href="checkout.php" class="btn-sig">Siguiente</a>
             
         </div>
 
     </div>
     <div id="footer-placeholder"></div>
-</body>
 
-<script src="../js/header-footer.js"></script>
+    <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const contenedorItems = document.getElementById("contenedor-items");
@@ -152,6 +152,9 @@
             localStorage.setItem('carrito', JSON.stringify(carrito));
             renderizarCarrito();
             
+            if (typeof actualizarContador === 'function') {
+                actualizarContador();
+            }
            
             totalPagarElemento.style.transform = "scale(1.08)";
             totalPagarElemento.style.transition = "transform 0.1s ease";
@@ -162,6 +165,15 @@
 
        
         renderizarCarrito();
+
+if (sessionStorage.getItem('avisoVacio') === 'true') {
+    alert("Tu carrito está vacío. No puedes proceder al pago.");
+    sessionStorage.removeItem('avisoVacio');
+}
+
     });
 </script>
+
+</body>
+
 </html>

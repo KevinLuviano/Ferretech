@@ -1,0 +1,49 @@
+
+
+:root {
+    --color-exito: #198754; 
+    --color-texto-oscuro: #212529; /* Color de los títulos principales */
+    --color-borde: #dee2e6; /* Gris de las tarjetas de la derecha */
+}
+
+.contenedor-confirmacion {
+    max-width: 600px;
+    margin: 50px auto;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* Icono animado de la palomita (Éxito) */
+.icono-exito {
+    font-size: 80px;
+    color: var(--color-exito);
+    line-height: 1;
+    display: inline-block;
+    animation: popIn 0.5s ease-out;
+}
+
+.titulo-exito {
+    color: var(--color-texto-oscuro);
+    font-weight: 700;
+}
+
+.resumen-pedido {
+    background-color: #f8f9fa;
+    border-top: 1px dashed var(--color-borde);
+}
+
+/* Animación de entrada para el ícono de éxito */
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,24 @@
+<footer class="footer">
+    <hr>
+
+    <div class="contenido">
+
+        <div class="contactanos">
+            <h4>CONTÁCTANOS</h4>
+            <p>
+                <img src="../img/correo.PNG" alt="Icono de correo" height="15">
+                tiendaenlinea@ferretech.com.mx
+            </p>
+            <p>
+                <img src="../img/telefono.png" alt="Icono de teléfono" height="15">
+                +52 734 115 0716
+            </p>
+        </div>
+
+        <div class="enlaces">
+            <p>Términos y condiciones</p>
+            <p>Política de privacidad</p>
+        </div>
+
+    </div>
+</footer>
