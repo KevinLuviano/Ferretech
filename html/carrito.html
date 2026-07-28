@@ -77,22 +77,23 @@
                 granTotal += subtotal;
 
                
-                const itemHTML = `
-                    <div class="item" data-index="${index}">
-                        <div class="prod-info">
-                            <img src="${item.imagen}" alt="${item.titulo}" class="prod-img">
-                            <span class="prod-txt">${item.titulo}</span>
-                        </div>
-                        
-                        <div class="cant-box">
-                            <button type="button" class="btn-c btn-menos">-</button>
-                            <input type="text" class="cant-in" value="${item.cantidad}" readonly>
-                            <button type="button" class="btn-c btn-mas">+</button>
-                        </div>
+              
+                    const itemHTML = `
+                        <div class="item" data-index="${index}" data-id="${item.id}">
+                            <div class="prod-info">
+                                <img src="${item.imagen}" alt="${item.titulo}" class="prod-img">
+                                <span class="prod-txt">${item.titulo}</span>
+                            </div>
+                            
+                            <div class="cant-box">
+                                <button type="button" class="btn-c btn-menos">-</button>
+                                <input type="text" class="cant-in" value="${item.cantidad}" readonly>
+                                <button type="button" class="btn-c btn-mas">+</button>
+                            </div>
 
-                        <div class="prod-pre">$ ${subtotal}</div>
-                    </div>
-                `;
+                            <div class="prod-pre">$ ${subtotal}</div>
+                        </div>
+                    `;
                 contenedorItems.innerHTML += itemHTML;
             });
 
