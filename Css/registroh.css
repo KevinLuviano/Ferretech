@@ -1,0 +1,100 @@
+/* Estilos para el formulario de Registro Host */
+.contenedor-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 150px);
+    background-color: #f8f9fa;
+}
+
+.caja-formulario {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.titulo-reg {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tabla-form {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.etiqueta {
+    font-weight: 600;
+    color: #495057;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+.entrada-reg {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.entrada-reg:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.botones-box {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.btn-limpiar,
+.btn-registrar {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+    margin: 0 5px;
+}
+
+.btn-limpiar {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-limpiar:hover {
+    background-color: #5a6268;
+}
+
+.btn-registrar {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-registrar:hover {
+    background-color: #0056b3;
+}
+
+.enlace-host {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.enlace-host:hover {
+    text-decoration: underline;
+}
