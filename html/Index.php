@@ -25,27 +25,31 @@
             <div id="contenedor-carrusel"></div>
         </section>
 
-        <section> 
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <h2 class="mb-3">🏠 Perfil</h2>
-                    <p class="text-start perfil-texto">
-                        FerreTech es un grupo de establecimientos de autoservicio especializados en productos ferreteros de alta calidad. Con nuestra amplia selección de herramientas, materiales de construcción y productos para el hogar, somos la tienda de herramientas líder en México. Nuestro compromiso es brindar a nuestros clientes un servicio excepcional y una experiencia de compra conveniente. Visítanos en línea o en nuestras sucursales locales para encontrar todo lo que necesitas para tus proyectos de construcción y reparación. ¡Confía en FerreTech para todas tus necesidades de ferretería!
-                    </p>
-                </div>
+      <section> 
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <h2 class="mb-3">🏠 Perfil</h2>
+            <!-- Usamos style="text-align: justify;"  -->
+            <p class="perfil-texto" style="text-align: justify;">
+                FerreTech es un grupo de establecimientos de autoservicio especializados en productos ferreteros de alta calidad. Con nuestra amplia selección de herramientas, materiales de construcción y productos para el hogar, somos la tienda de herramientas líder en México. Nuestro compromiso es brindar a nuestros clientes un servicio excepcional y una experiencia de compra conveniente. Visítanos en línea o en nuestras sucursales locales para encontrar todo lo que necesitas para tus proyectos de construcción y reparación. ¡Confía en FerreTech para todas tus necesidades de ferretería!
+            </p>
+        </div>
 
-                <div class="col-md-6">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.661592351234!2d-99.168693!3d19.432607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjQiTiA5OcKwMTAnMDcuMyJX!5e0!3m2!1ses!2smx!4v1625000000000!5m2!1ses!2smx" 
-                        width="100%" 
-                        height="300" 
-                        class="mapa-iframe"
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </section>
+        <div class="col-md-6">
+            <!-- URL actualizada al Instituto Tecnológico de Zacatepec -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3778.892019478479!2d-99.19323142416453!3d18.657579664627196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cddf76ef8763ad%3A0xc6cb1c7df4fb7fb5!2sInstituto%20Tecnol%C3%B3gico%20de%20Zacatepec%20(ITZ)!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" 
+                width="100%" 
+                height="300" 
+                class="mapa-iframe"
+                style="border:0; border-radius: 8px;"
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
     </main>
 
     <div id="footer-placeholder"></div>
