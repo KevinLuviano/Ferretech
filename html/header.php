@@ -24,6 +24,12 @@ session_start();
         
         <span>Hola, <?php echo $_SESSION["nombre"]; ?></span>
         &nbsp; | &nbsp;
+
+        <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === 'host') { ?>
+            <a href="PanelAdmi.php" font-weight: bold;">Panel Admin</a>
+            &nbsp; | &nbsp;
+        <?php } ?>
+
         <a href="cerrar.php" id="btn-logout">Cerrar sesión</a>
         
     <?php } else { ?>
