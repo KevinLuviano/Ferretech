@@ -190,7 +190,7 @@
                                 inputmode="numeric"
                                 oninput="formatExpiry(this)"
                             >
-                            <div class="invalid-feedback">Formato inválido. Usa MM/AA (Mes 01-12).</div>
+                            <div class="invalid-feedback">Ingresa una fecha válida y vigente (MM/AA).</div>
                         </div>
 
                         <div class="col-md-3">
@@ -264,6 +264,34 @@
             } else {
                 input.value = value;
             }
+            // Limpia el mensaje de error personalizado mientras escribe
+            input.setCustomValidity('');
+        }
+
+        function validarExpiracionTarjeta(input) {
+            const valor = input.value.trim();
+            const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+            
+            if (!regex.test(valor)) {
+                input.setCustomValidity('Formato inválido.');
+                return false;
+            }
+
+            const [mesStr, anoStr] = valor.split('/');
+            const mesExp = parseInt(mesStr, 10);
+            const anoExp = parseInt('20' + anoStr, 10);
+
+            const fechaActual = new Date();
+            const anoActual = fechaActual.getFullYear();
+            const mesActual = fechaActual.getMonth() + 1;
+
+            if (anoExp < anoActual || (anoExp === anoActual && mesExp < mesActual)) {
+                input.setCustomValidity('La tarjeta está expirada.');
+                return false;
+            }
+
+            input.setCustomValidity('');
+            return true;
         }
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -319,6 +347,10 @@
                     event.preventDefault();
                     event.stopPropagation();
 
+                    // Validar la fecha de vencimiento de la tarjeta
+                    const inputExpiracion = document.getElementById('cc-expiracion');
+                    validarExpiracionTarjeta(inputExpiracion);
+
                     if (form.checkValidity()) {
                         const nombreCliente = document.getElementById('nombre').value;
                         const apellidoCliente = document.getElementById('apellidos').value;
@@ -346,7 +378,6 @@
                         };
 
                         try {
-                            // RUTA CORREGIDA: Ajustada para buscar procesar_checkout.php en la carpeta raíz
                             const respuesta = await fetch('procesar_checkout.php', {
                                 method: 'POST',
                                 headers: {
@@ -355,7 +386,6 @@
                                 body: JSON.stringify(payload)
                             });
 
-                            // Verificar que el servidor devolvió un status HTTP OK (200)
                             if (!respuesta.ok) {
                                 throw new Error(`Servidor respondió con código de estado ${respuesta.status}`);
                             }
@@ -363,7 +393,6 @@
                             const resultado = await respuesta.json();
 
                             if (resultado.success) {
-                                // Armar objeto de compra para la pantalla de confirmación
                                 const datosCompra = {
                                     idPedido: resultado.idPedido,
                                     cliente: `${nombreCliente} ${apellidoCliente}`,
@@ -372,18 +401,12 @@
                                     metodo: metodoSeleccionado
                                 };
 
-                                // Guardar resumen de compra en localStorage
                                 localStorage.setItem('ultimaCompra', JSON.stringify(datosCompra));
-
-                                // Vaciar carrito activo
                                 localStorage.removeItem('carrito');
-
-                                // Redirigir a la pantalla de confirmación
                                 window.location.href = "confirmacion.php";
                             } else {
                                 alert("Atención: " + (resultado.message || "Error al procesar la compra"));
                                 
-                                // Redirigir al login si el problema fue falta de sesión
                                 if (resultado.message && resultado.message.includes('sesión')) {
                                     window.location.href = "login.php?redirect=checkout.php&msg=inicia_sesion_requerido";
                                 }
@@ -402,4 +425,4 @@
     <script src="../js/header-footer.js?v=2"></script>
     <script src="../js/agregar-carrito.js"></script>
 </body>
-</html>
+</html>s
