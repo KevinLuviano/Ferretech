@@ -61,6 +61,9 @@
             <div class="col text-end">
                 <a href="gestion.php" class="btn btn-dark fw-semibold px-4">➕ Agregar Nuevo Producto</a>
             </div>
+            <div class="col text-end">
+                <a href="registro-host.php" class="btn btn-dark fw-semibold px-4">➕ Agregar Nuevo host</a>
+            </div>
         </div>
 
         <div class="card shadow-sm border-0">
