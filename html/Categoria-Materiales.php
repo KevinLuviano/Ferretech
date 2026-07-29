@@ -37,7 +37,7 @@ $resultado = $conexion->query($sql);
 
                 while ($fila = $resultado->fetch_assoc()) {
             ?>
-                    <article class="producto">
+                    <article class="producto" data-id="<?php echo $fila["id_producto"]; ?>">
                         <div class="imagen-producto">
                             <img src="<?php echo $fila["url_imagen"]; ?>" alt="<?php echo $fila["nombre_producto"]; ?>">
                         </div>
@@ -46,8 +46,7 @@ $resultado = $conexion->query($sql);
                             
                             <p class="precio">$<?php echo number_format($fila["precio"], 2); ?></p>
                             
-                            <button class="btn-agregar" data-id="<?php echo $fila["id_producto"]; ?>">Agregar</button>
-                        </div>
+                            <button class="btn-agregar">Agregar</button>
                     </article>
             <?php
                 }

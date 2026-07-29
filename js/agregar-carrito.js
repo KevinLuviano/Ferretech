@@ -3,6 +3,19 @@ const botonesAgregar = document.querySelectorAll('.btn-agregar');
 for (let boton of botonesAgregar) {
     boton.addEventListener('click', function (evento) {
 
+        if (boton.classList.contains('agregando')) {
+            return; 
+        }
+
+        const textoOriginal = boton.innerText;
+        boton.innerText = "¡Agregado!";
+        boton.classList.add('agregando');
+
+        setTimeout(() => {
+            boton.innerText = textoOriginal;
+            boton.classList.remove('agregando');
+        }, 1000);
+
         const articulo = evento.target.closest('.producto');
 
         const titulo = articulo.querySelector('h3').innerText;
