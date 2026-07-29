@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($stmt_insert->execute()) {
         echo "<script>
-                alert('¡Registro de Host exitoso! Ya puedes iniciar sesión.');
-                window.location.href = 'login-host.php';
+                alert('¡Registro de Host exitoso! Bienvenido a panel admin.');
+                window.location.href = 'PanelAdmi.php';
               </script>";
     } else {
         echo "<script>
