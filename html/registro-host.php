@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["es_host"]) || $_SESSION["es_host"] !== true) {
+    header("Location: login-host.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <!-- Tu archivo CSS con el nombre que querías -->
     <link rel="stylesheet" href="../css/registroh.css">
 </head>
 <body>
@@ -20,15 +26,21 @@
                 <table class="tabla-form"> 
                     <tr>
                         <td><label for="nombre" class="etiqueta">Nombre*</label></td>
-                        <td><input type="text" id="nombre" name="nombre" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Raul" required /></td>
+                        <td><input type="text" id="nombre" name="nombre" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Ingrese su nombre" required /></td>
                     </tr>
                     <tr>
                         <td><label for="apellido" class="etiqueta">Apellido*</label></td>
-                        <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Moreno Altamirano" required /></td>
+                        <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Ingrese su apellido" required /></td>
                     </tr>
                     <tr>
-                        <td><label for="email" class="etiqueta">Correo Corporativo*</label></td>
-                        <td><input type="email" id="email" name="email" class="entrada-reg" size="25" placeholder="usuario@ferretech.com" required /></td>
+                        <td><label for="email_usuario" class="etiqueta">Correo Corporativo*</label></td>
+                        <td>
+                            <div class="entrada-correo-box">
+                                <input type="text" id="email_usuario" class="entrada-reg" size="25" placeholder="usuario" required />
+                                <span class="sufijo-dominio">@ferretech.com</span>
+                            </div>
+                            <input type="hidden" id="email" name="email" />
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
@@ -44,11 +56,6 @@
                             <input type="submit" value="Registrar Host" class="btn-registrar"/>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: center; padding-top: 15px;">
-                            <a href="login-host.php" class="enlace-host">¿Ya tienes cuenta de Host? Inicia sesión aquí</a>
-                        </td>
-                    </tr>
                 </table>
             </form>
         </div>
@@ -62,7 +69,8 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const formulario = document.getElementById("formulario-registro-host");
-            const inputEmail = document.getElementById("email");
+            const inputEmailUsuario = document.getElementById("email_usuario");
+            const inputEmailOculto = document.getElementById("email");
             const inputPass = document.getElementById("contraseña");
             const inputConfirmPass = document.getElementById("confirmar_contraseña");
             const dominioRequerido = "@ferretech.com";
@@ -78,22 +86,24 @@
             formulario.addEventListener("reset", () => {
                 inputConfirmPass.style.border = "";
                 inputPass.style.border = "";
-                inputEmail.style.border = "";
+                inputEmailUsuario.style.border = "";
             });
 
             formulario.addEventListener("submit", (evento) => {
-                const emailValue = inputEmail.value.trim();
+                let usuarioLimpio = inputEmailUsuario.value.trim().replace(/@.*$/, '');
+
+                if (!usuarioLimpio) {
+                    evento.preventDefault();
+                    alert("Por favor, ingresa tu usuario de correo corporativo.");
+                    inputEmailUsuario.focus();
+                    return;
+                }
+
+                inputEmailOculto.value = usuarioLimpio + dominioRequerido;
+
                 const passValue = inputPass.value;
                 const confirmValue = inputConfirmPass.value;
                 const regexSeguridad = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-                if (!emailValue.endsWith(dominioRequerido)) {
-                    evento.preventDefault();
-                    alert(`Acceso denegado: Solo se permite registro con correo corporativo (${dominioRequerido}).`);
-                    inputEmail.style.border = "2px solid #dc3545";
-                    inputEmail.focus();
-                    return;
-                }
 
                 if (!regexSeguridad.test(passValue)) {
                     evento.preventDefault();

@@ -20,8 +20,14 @@
             <form id="formulario-host" action="validar_login_host.php" method="POST">
                 <table class="tabla-form"> 
                     <tr>
-                        <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
-                        <td><input type="email" id="email" name="email" class="entrada-log" size="25" placeholder="correo@ferretech.com" required /></td>
+                        <td><label for="email_usuario" class="etiqueta">Correo electrónico*</label></td>
+                        <td>
+                            <div class="entrada-correo-box">
+                                <input type="text" id="email_usuario" class="entrada-log" size="25" placeholder="correo" required />
+                                <span class="sufijo-dominio">@ferretech.com</span>
+                            </div>
+                            <input type="hidden" id="email" name="email" />
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
@@ -46,6 +52,23 @@
     <script src="../js/agregar-carrito.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const formulario = document.getElementById("formulario-host");
+            const inputEmailUsuario = document.getElementById("email_usuario");
+            const inputEmailOculto = document.getElementById("email");
+
+            formulario.addEventListener("submit", (evento) => {
+                let usuarioLimpio = inputEmailUsuario.value.trim().replace(/@.*$/, '');
+
+                if (!usuarioLimpio) {
+                    evento.preventDefault();
+                    alert("Por favor, ingresa tu usuario de correo corporativo.");
+                    inputEmailUsuario.focus();
+                    return;
+                }
+
+                inputEmailOculto.value = usuarioLimpio + "@ferretech.com";
+            });
+
             const urlParams = new URLSearchParams(window.location.search);
 
             if (urlParams.get('error') === 'contrasena_incorrecta') {
