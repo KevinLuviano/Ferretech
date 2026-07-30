@@ -135,3 +135,34 @@ body {
         border-radius: 40px; /* Mantiene tu diseño redondeado original */
     }
 }
+.entrada-correo-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--gris-borde);
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.entrada-correo-box:focus-within {
+    border-color: var(--azul-oscuro);
+}
+
+.entrada-correo-box .entrada-log {
+    border: none !important;
+    outline: none !important;
+    flex: 1;
+}
+
+.sufijo-dominio {
+    background-color: var(--gris-fondo);
+    color: #555;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    user-select: none;
+    border-left: 1px solid var(--gris-borde);
+    white-space: nowrap;
+}

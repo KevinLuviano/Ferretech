@@ -98,3 +98,36 @@
 .enlace-host:hover {
     text-decoration: underline;
 }
+.entrada-correo-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entrada-correo-box:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.entrada-correo-box .entrada-reg {
+    border: none;
+    border-radius: 0;
+    box-shadow: none !important;
+    outline: none;
+    flex: 1;
+}
+
+.sufijo-dominio {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    user-select: none;
+    border-left: 1px solid #ced4da;
+    white-space: nowrap;
+}
