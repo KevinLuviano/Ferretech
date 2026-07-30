@@ -23,7 +23,7 @@
                         <td><label for="email_usuario" class="etiqueta">Correo electrónico*</label></td>
                         <td>
                             <div class="entrada-correo-box">
-                                <input type="text" id="email_usuario" class="entrada-log" size="25" placeholder="correo" required />
+                                <input type="text" id="email_usuario" class="entrada-log" size="25" placeholder="Ingrese su correo" required />
                                 <span class="sufijo-dominio">@ferretech.com</span>
                             </div>
                             <input type="hidden" id="email" name="email" />

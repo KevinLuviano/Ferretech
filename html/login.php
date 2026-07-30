@@ -34,7 +34,7 @@ $redirect = isset($_GET['redirect']) ? htmlspecialchars($_GET['redirect']) : 'In
                 <table class="tabla-form"> 
                     <tr>
                         <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
-                        <td><input type="email" id="email" name="email" class="entrada-log" size="25" placeholder="correo@ferretech.com" required /></td>
+                        <td><input type="email" id="email" name="email" class="entrada-log" size="25" placeholder="Ingrese su correo electronico" required /></td>
                     </tr>
                     <tr>
                         <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>
