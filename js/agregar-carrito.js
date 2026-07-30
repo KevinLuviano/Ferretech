@@ -3,24 +3,39 @@ const botonesAgregar = document.querySelectorAll('.btn-agregar');
 for (let boton of botonesAgregar) {
     boton.addEventListener('click', function (evento) {
 
+        if (boton.classList.contains('agregando')) {
+            return; 
+        }
+
+        const textoOriginal = boton.innerText;
+        boton.innerText = "¡Agregado!";
+        boton.classList.add('agregando');
+
+        setTimeout(() => {
+            boton.innerText = textoOriginal;
+            boton.classList.remove('agregando');
+        }, 1000);
+
         const articulo = evento.target.closest('.producto');
 
         const titulo = articulo.querySelector('h3').innerText;
         const precio = articulo.querySelector('.precio').innerText;
         const imagen = articulo.querySelector('img').src;
+        const id = articulo.getAttribute('data-id');
 
         const precioNumerico = parseFloat(precio.replace(/[^0-9.]/g, ''));
 
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
         const productoExistente = carrito.find(function (item) {
-            return item.titulo === titulo;
+            return item.id === id;
         });
 
         if (productoExistente) {
             productoExistente.cantidad += 1;
         } else {
-            const productoSeleccionado = {
+           const productoSeleccionado = {
+                id: id,
                 titulo: titulo,
                 precio: precioNumerico,
                 imagen: imagen,

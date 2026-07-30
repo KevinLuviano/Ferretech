@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["nombre"] = $usuario["nombre"];
             $_SESSION["email"] = $usuario["correo"];
             $_SESSION["es_host"] = true;
+            $_SESSION["rol"] = $usuario["rol"];
 
             header("Location: PanelAdmi.php");
             exit();

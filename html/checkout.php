@@ -10,6 +10,15 @@
     <link href="../Css/checkout.css" rel="stylesheet">
     <link href="../Css/header.css" rel="stylesheet">
     <link href="../Css/footer.css" rel="stylesheet">
+
+   <script>
+    let carritoCheck = JSON.parse(localStorage.getItem('carrito')) || [];
+    if (carritoCheck.length === 0) {
+        sessionStorage.setItem('avisoVacio', 'true');
+        window.location.href = 'carrito.php';
+    }
+</script>
+
 </head>
 <body>
     <div id="header-placeholder"></div>
@@ -337,6 +346,7 @@
                         };
 
                         try {
+                            // RUTA CORREGIDA: Ajustada para buscar procesar_checkout.php en la carpeta raíz
                             const respuesta = await fetch('procesar_checkout.php', {
                                 method: 'POST',
                                 headers: {
@@ -344,6 +354,11 @@
                                 },
                                 body: JSON.stringify(payload)
                             });
+
+                            // Verificar que el servidor devolvió un status HTTP OK (200)
+                            if (!respuesta.ok) {
+                                throw new Error(`Servidor respondió con código de estado ${respuesta.status}`);
+                            }
 
                             const resultado = await respuesta.json();
 
@@ -366,11 +381,16 @@
                                 // Redirigir a la pantalla de confirmación
                                 window.location.href = "confirmacion.php";
                             } else {
-                                alert("Ocurrió un error al procesar el pedido: " + (resultado.message || "Error desconocido"));
+                                alert("Atención: " + (resultado.message || "Error al procesar la compra"));
+                                
+                                // Redirigir al login si el problema fue falta de sesión
+                                if (resultado.message && resultado.message.includes('sesión')) {
+                                    window.location.href = "login.php?redirect=checkout.php&msg=inicia_sesion_requerido";
+                                }
                             }
                         } catch (error) {
-                            console.error("Error en la petición:", error);
-                            alert("Error al conectar con el servidor.");
+                            console.error("Detalle del error:", error);
+                            alert("Error al conectar con el servidor: " + error.message);
                         }
                     } else {
                         form.classList.add('was-validated');
