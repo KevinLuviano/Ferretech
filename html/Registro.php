@@ -21,15 +21,15 @@
     <table class="tabla-form"> 
         <tr>
             <td><label for="nombre" class="etiqueta">Nombre*</label></td>
-            <td><input type="text" id="nombre" name="nombre" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Elizabeth " required /></td>
+            <td><input type="text" id="nombre" name="nombre" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Ingrese su nombre " required /></td>
         </tr>
         <tr>
             <td><label for="apellido" class="etiqueta">Apellido*</label></td>
-            <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Luviano ventura" required /></td>
+            <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Ingrese su apellido/s" required /></td>
         </tr>
         <tr>
             <td><label for="email" class="etiqueta">Correo electrónico*</label></td>
-            <td><input type="email" id="email" name="email" class="entrada-reg" size="25" placeholder="correo@ferretech.com" required /></td>
+            <td><input type="email" id="email" name="email" class="entrada-reg" size="25" placeholder="Ingrese su correo electronico" required /></td>
         </tr>
         <tr>
             <td><label for="contraseña" class="etiqueta">Contraseña*</label></td>

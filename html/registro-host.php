@@ -30,13 +30,13 @@ if (!isset($_SESSION["es_host"]) || $_SESSION["es_host"] !== true) {
                     </tr>
                     <tr>
                         <td><label for="apellido" class="etiqueta">Apellido*</label></td>
-                        <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Ingrese su apellido" required /></td>
+                        <td><input type="text" id="apellido" name="apellido" class="entrada-reg" size="25" pattern="[A-Za-z\s]*" title="solo letras" placeholder="Ingrese su apellido/s" required /></td>
                     </tr>
                     <tr>
                         <td><label for="email_usuario" class="etiqueta">Correo Corporativo*</label></td>
                         <td>
                             <div class="entrada-correo-box">
-                                <input type="text" id="email_usuario" class="entrada-reg" size="25" placeholder="usuario" required />
+                                <input type="text" id="email_usuario" class="entrada-reg" size="25" placeholder="Ingrese su correo" required />
                                 <span class="sufijo-dominio">@ferretech.com</span>
                             </div>
                             <input type="hidden" id="email" name="email" />
