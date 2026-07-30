@@ -14,6 +14,7 @@
     <link href="../Css/inicio.css" rel="stylesheet">
     <link href="../Css/header.css" rel="stylesheet">
     <link href="../Css/footer.css" rel="stylesheet">
+    <link href="../Css/carrusel.css" rel="stylesheet">
 </head>
  
 <body>
@@ -21,9 +22,9 @@
     <div id="header-placeholder"></div>
 
     <main class="container my-4">   
-        <section class="text-center mb-5">
-            <div id="contenedor-carrusel"></div>
-        </section>
+        <section class="mb-5">
+    <div id="contenedor-carrusel"></div>
+</section>
 
       <section> 
     <div class="row align-items-center">
