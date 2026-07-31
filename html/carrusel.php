@@ -2,7 +2,11 @@
 require_once("connection.php");
 
 // Consultar los elementos del carrusel ordenados desde el más reciente
-$sql = "SELECT badge_promo, titulo, descripcion, url_imagen, categoria FROM Carrusel ORDER BY id_carrusel DESC";
+// Consultar el carrusel uniendo la tabla Categorias para obtener el nombre exacto
+$sql = "SELECT c.badge_promo, c.titulo, c.descripcion, c.url_imagen, c.id_categoria, cat.nombre_categoria 
+        FROM Carrusel c
+        LEFT JOIN Categorias cat ON c.id_categoria = cat.id_categoria
+        ORDER BY c.id_carrusel DESC";
 $resultado = $conexion->query($sql);
 ?>
 
@@ -34,11 +38,10 @@ $resultado = $conexion->query($sql);
                   <p><?php echo htmlspecialchars($item['descripcion']); ?></p>
                   
                   <?php 
-                    // Redirección dinámica universal según el nombre de la categoría
-                    // Ejemplo: "Materiales" -> "Categoria-Materiales.php"
-                    $link = "Categoria-" . str_replace(' ', '-', $item['categoria']) . ".php";
+                    // Redirección hacia la plantilla dinámica
+                    $link = "categoria.php?id=" . $item['id_categoria'];
                   ?>
-                  <a href="<?php echo htmlspecialchars($link); ?>" class="btn btn-accion">Ver <?php echo htmlspecialchars($item['categoria']); ?></a>
+                  <a href="<?php echo htmlspecialchars($link); ?>" class="btn btn-accion">Ver <?php echo htmlspecialchars($item['nombre_categoria']); ?></a>
                 </div>
                 <div class="contenedor-imagen">
                   <img src="<?php echo htmlspecialchars($item['url_imagen']); ?>" alt="<?php echo htmlspecialchars($item['titulo']); ?>" class="imagen-producto">
