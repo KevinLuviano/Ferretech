@@ -47,16 +47,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($nombre_categoria)) {
         $error = "Por favor, escribe el nombre de la categoría.";
     } else {
-        $sql = "INSERT INTO Categorias (nombre_categoria) VALUES (?)";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("s", $nombre_categoria);
+        // Validar primero si la categoría ya existe en la base de datos
+        $sql_check = "SELECT id_categoria FROM Categorias WHERE LOWER(nombre_categoria) = LOWER(?)";
+        $stmt_check = $conexion->prepare($sql_check);
+        $stmt_check->bind_param("s", $nombre_categoria);
+        $stmt_check->execute();
+        $res_check = $stmt_check->get_result();
 
-        if ($stmt->execute()) {
-            $mensaje = "¡Categoría registrada con éxito!";
+        if ($res_check && $res_check->num_rows > 0) {
+            $error = "La categoría '" . htmlspecialchars($nombre_categoria) . "' ya existe.";
+            $stmt_check->close();
         } else {
-            $error = "Error al guardar la categoría (puede que ya exista): " . $conexion->error;
+            $stmt_check->close();
+
+            // Insertar si no existe
+            $sql = "INSERT INTO Categorias (nombre_categoria) VALUES (?)";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("s", $nombre_categoria);
+
+            if ($stmt->execute()) {
+                $mensaje = "¡Categoría registrada con éxito!";
+            } else {
+                $error = "Error al guardar en la base de datos: " . $conexion->error;
+            }
+            $stmt->close();
         }
-        $stmt->close();
     }
 }
 ?>
@@ -86,11 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="header-placeholder"></div>
 
     <main class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="display-6 fw-bold border border-dark px-4 py-1" style="color: #000000;">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <h1 class="display-6 fw-bold border border-dark px-4 py-1 m-0 d-inline-block align-self-start align-self-md-auto" style="color: #000000;">
                 Gestión de Categorías
             </h1>
-            <a href="PanelAdmi.php" class="btn btn-outline-dark fw-semibold">← Volver al Panel</a>
+            <a href="PanelAdmi.php" class="btn btn-outline-dark fw-semibold align-self-start align-self-md-auto">← Volver al Panel</a>
         </div>
 
         <?php if (!empty($mensaje)): ?>
@@ -102,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php if (!empty($error)): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <?php echo htmlspecialchars($error); ?>
+                ⚠️ <?php echo htmlspecialchars($error); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>

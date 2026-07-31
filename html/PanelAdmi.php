@@ -17,21 +17,21 @@
 
     <main class="container my-5">
         <!-- Indicadores Rápidos -->
-        <div class="row mb-4 text-center">
-            <div class="col-md-4">
-                <div class="card p-3 shadow-sm bg-light">
+        <div class="row g-3 mb-4 text-center">
+            <div class="col-12 col-md-4">
+                <div class="card p-3 shadow-sm bg-light h-100">
                     <h6 class="text-muted">Ingresos Totales</h6>
                     <h3 class="text-success fw-bold mb-0">$<?php echo number_format($total_ingresos, 2); ?> MXN</h3>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card p-3 shadow-sm bg-light">
+            <div class="col-12 col-md-4">
+                <div class="card p-3 shadow-sm bg-light h-100">
                     <h6 class="text-muted">Unidades Vendidas</h6>
                     <h3 class="text-primary fw-bold mb-0"><?php echo intval($total_ventas); ?></h3>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card p-3 shadow-sm bg-light">
+            <div class="col-12 col-md-4">
+                <div class="card p-3 shadow-sm bg-light h-100">
                     <h6 class="text-muted">Stock Crítico (≤ 5)</h6>
                     <h3 class="text-danger fw-bold mb-0"><?php echo count($productos_criticos); ?></h3>
                 </div>
@@ -52,20 +52,21 @@
             <?php endif; ?>
         </div>
 
-        <div class="row mb-4 align-items-center">
+        <!-- Encabezado y Botones Responsivos -->
+        <div class="row mb-4 align-items-center g-3">
             <!-- Lado Izquierdo: Título Inventario -->
-            <div class="col-md-3">
-                <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1" style="color: #000000;">
+            <div class="col-12 col-lg-3 text-start">
+                <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1 m-0" style="color: #000000;">
                     Inventario
                 </h1>
             </div>
 
-            <!-- Lado Derecho: Grupo de Botones alineados -->
-            <div class="col-md-9 text-end">
-                <a href="categoria_edicion.php" class="btn btn-dark fw-semibold px-3 me-2">🏷️ Categorías</a>
-                <a href="carrusel_modificacion.php" class="btn btn-dark fw-semibold px-3 me-2">🎡 Modificar Carrusel</a>
-                <a href="gestion.php" class="btn btn-dark fw-semibold px-3 me-2">➕ Agregar Nuevo Producto</a>
-                <a href="registro-host.php" class="btn btn-dark fw-semibold px-3">➕ Agregar Nuevo host</a>
+            <!-- Lado Derecho: Grupo de Botones adaptables para móvil -->
+            <div class="col-12 col-lg-9 text-lg-end d-flex flex-wrap gap-2 justify-content-start justify-content-lg-end">
+                <a href="categoria_edicion.php" class="btn btn-dark fw-semibold px-3 flex-grow-1 flex-lg-grow-0">🏷️ Categorías</a>
+                <a href="carrusel_modificacion.php" class="btn btn-dark fw-semibold px-3 flex-grow-1 flex-lg-grow-0">🎡 Modificar Carrusel</a>
+                <a href="gestion.php" class="btn btn-dark fw-semibold px-3 flex-grow-1 flex-lg-grow-0">➕ Agregar Nuevo Producto</a>
+                <a href="registro-host.php" class="btn btn-dark fw-semibold px-3 flex-grow-1 flex-lg-grow-0">➕ Agregar Nuevo host</a>
             </div>
         </div>
 
