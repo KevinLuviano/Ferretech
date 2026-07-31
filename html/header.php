@@ -26,7 +26,7 @@ session_start();
         &nbsp; | &nbsp;
 
         <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] === 'host') { ?>
-            <a href="PanelAdmi.php" font-weight: bold;">Panel Admin</a>
+            <a href="PanelAdmi.php" ">Panel Admin</a>
             &nbsp; | &nbsp;
         <?php } ?>
 
@@ -60,8 +60,25 @@ session_start();
         <details class="categorias">
             <summary>Categorías ▼</summary>
             <ul class="dropdown">
-                <li><a href="Categoria-Herramientas.php">Herramientas</a></li>
-                <li><a href="Categoria-Materiales.php">Materiales de Fijación</a></li>
+                <?php
+
+                include_once("connection.php"); 
+
+                if (isset($conexion)) {
+                    $sql_cat = "SELECT id_categoria, nombre_categoria FROM Categorias";
+                    $result_cat = mysqli_query($conexion, $sql_cat);
+
+                    if ($result_cat && mysqli_num_rows($result_cat) > 0) {
+                        while ($cat = mysqli_fetch_assoc($result_cat)) {
+                            echo '<li><a href="categoria.php?id=' . $cat['id_categoria'] . '">' . htmlspecialchars($cat['nombre_categoria']) . '</a></li>';
+                        }
+                    } else {
+                        echo '<li><a href="#">Sin categorías</a></li>';
+                    }
+                } else {
+                    echo '<li><a href="#" >Falta variable $conexion</a></li>';
+                }
+                ?>
             </ul>
         </details>
     </nav>
