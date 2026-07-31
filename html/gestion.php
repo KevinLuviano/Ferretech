@@ -21,7 +21,8 @@ if ($id_producto > 0) {
     $stmt->close();
 }
 
-$categorias_res = $conexion->query("SELECT * FROM Categorias");
+// Cargar todas las categorías ordenadas alfabéticamente desde la base de datos
+$categorias_res = $conexion->query("SELECT * FROM Categorias ORDER BY nombre_categoria ASC");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -94,9 +95,12 @@ $categorias_res = $conexion->query("SELECT * FROM Categorias");
                             </div>
                         </div>
 
-                        <!-- Categoría -->
+                        <!-- Categoría con botón para añadir más -->
                         <div class="col-md-4">
-                            <label for="prodCategoria" class="form-label fw-bold">Categoría</label>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="prodCategoria" class="form-label fw-bold m-0">Categoría</label>
+                                <a href="categoria_edicion.php" class="text-decoration-none small fw-bold text-primary">+ Editar Categorías</a>
+                            </div>
                             <select class="form-select" id="prodCategoria" name="categoria" required>
                                 <option value="" disabled <?php echo !$producto_editar ? 'selected' : ''; ?>>Seleccionar...</option>
                                 <?php if ($categorias_res && $categorias_res->num_rows > 0): ?>

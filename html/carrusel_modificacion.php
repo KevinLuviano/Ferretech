@@ -127,12 +127,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Potencia industrial de 1200W..." required></textarea>
                         </div>
 
+                        <!-- Cargar categorías dinámicas desde la BD -->
                         <div class="mb-3">
                             <label for="categoria" class="form-label fw-semibold">Categoría Perteneciente</label>
                             <select class="form-select" id="categoria" name="categoria" required>
                                 <option value="" selected disabled>Selecciona una categoría</option>
-                                <option value="Herramientas">Herramientas</option>
-                                <option value="Materiales">Materiales de Fijación</option>
+                                <?php
+                                $sql_options = "SELECT nombre_categoria FROM Categorias ORDER BY nombre_categoria ASC";
+                                $res_options = $conexion->query($sql_options);
+                                if ($res_options && $res_options->num_rows > 0) {
+                                    while ($opt = $res_options->fetch_assoc()) {
+                                        echo '<option value="' . htmlspecialchars($opt['nombre_categoria']) . '">' . htmlspecialchars($opt['nombre_categoria']) . '</option>';
+                                    }
+                                }
+                                ?>
                             </select>
                         </div>
 

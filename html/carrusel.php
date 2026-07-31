@@ -34,10 +34,11 @@ $resultado = $conexion->query($sql);
                   <p><?php echo htmlspecialchars($item['descripcion']); ?></p>
                   
                   <?php 
-                    // Redirección dinámica según categoría
-                    $link = (stristr($item['categoria'], 'Material')) ? "Categoria-Materiales.php" : "Categoria-Herramientas.php";
+                    // Redirección dinámica universal según el nombre de la categoría
+                    // Ejemplo: "Materiales" -> "Categoria-Materiales.php"
+                    $link = "Categoria-" . str_replace(' ', '-', $item['categoria']) . ".php";
                   ?>
-                  <a href="<?php echo $link; ?>" class="btn btn-accion">Ver <?php echo htmlspecialchars($item['categoria']); ?></a>
+                  <a href="<?php echo htmlspecialchars($link); ?>" class="btn btn-accion">Ver <?php echo htmlspecialchars($item['categoria']); ?></a>
                 </div>
                 <div class="contenedor-imagen">
                   <img src="<?php echo htmlspecialchars($item['url_imagen']); ?>" alt="<?php echo htmlspecialchars($item['titulo']); ?>" class="imagen-producto">

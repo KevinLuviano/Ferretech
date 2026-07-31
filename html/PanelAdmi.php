@@ -52,21 +52,22 @@
             <?php endif; ?>
         </div>
 
-       <div class="row mb-4 align-items-center">
-    <!-- Lado Izquierdo: Título Inventario -->
-    <div class="col-md-4">
-        <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1" style="color: #000000;">
-            Inventario
-        </h1>
-    </div>
+        <div class="row mb-4 align-items-center">
+            <!-- Lado Izquierdo: Título Inventario -->
+            <div class="col-md-3">
+                <h1 class="display-6 fw-bold border border-dark d-inline-block px-4 py-1" style="color: #000000;">
+                    Inventario
+                </h1>
+            </div>
 
-    <!-- Lado Derecho: Grupo de Botones alineados en una sola fila -->
-    <div class="col-md-8 text-end">
-        <a href="carrusel_modificacion.php" class="btn btn-dark fw-semibold px-3 me-2">🎡 Modificar Carrusel</a>
-        <a href="gestion.php" class="btn btn-dark fw-semibold px-3 me-2">➕ Agregar Nuevo Producto</a>
-        <a href="registro-host.php" class="btn btn-dark fw-semibold px-3">➕ Agregar Nuevo host</a>
-    </div>
-</div>
+            <!-- Lado Derecho: Grupo de Botones alineados -->
+            <div class="col-md-9 text-end">
+                <a href="categoria_edicion.php" class="btn btn-dark fw-semibold px-3 me-2">🏷️ Categorías</a>
+                <a href="carrusel_modificacion.php" class="btn btn-dark fw-semibold px-3 me-2">🎡 Modificar Carrusel</a>
+                <a href="gestion.php" class="btn btn-dark fw-semibold px-3 me-2">➕ Agregar Nuevo Producto</a>
+                <a href="registro-host.php" class="btn btn-dark fw-semibold px-3">➕ Agregar Nuevo host</a>
+            </div>
+        </div>
 
         <div class="card shadow-sm border-0">
             <div class="card-header bg-corporativo text-white text-center py-2 border-0">
