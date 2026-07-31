@@ -91,9 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $checkUser->close();
 
-        // Consulta SQL ajustada a la tabla 'pedidos'
+        $db->begin_transaction();
+
         $sql = "INSERT INTO pedidos (id_producto, id_usuario, precio, cantidad, direccion, telefono_contacto, fecha_pedido) VALUES (?, ?, ?, ?, ?, ?, NOW())";
         $stmt = $db->prepare($sql);
+
+        $sql_stock = "UPDATE Productos SET stock = stock - ? WHERE id_producto = ?";
+        $stmt_stock = $db->prepare($sql_stock);
+
+        $sql_check = "SELECT stock, nombre_producto FROM Productos WHERE id_producto = ?";
+        $stmt_check = $db->prepare($sql_check);
 
         $id_ultimo_pedido = 0;
 
@@ -102,14 +109,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $precio      = (float)($item['precio'] ?? 0);
             $cantidad    = (int)($item['cantidad'] ?? 1);
 
+            $stmt_check->bind_param("i", $id_producto);
+            $stmt_check->execute();
+            $res_check = $stmt_check->get_result();
+            $datos_producto = $res_check->fetch_assoc();
+
+            if (!$datos_producto || $datos_producto['stock'] < $cantidad) {
+                $db->rollback();
+                $nombre_prod = $datos_producto ? $datos_producto['nombre_producto'] : 'Desconocido';
+                $stock_actual = $datos_producto ? $datos_producto['stock'] : 0;
+                
+                echo json_encode([
+                    'success' => false, 
+                    'message' => "Stock insuficiente para: $nombre_prod. Solo quedan $stock_actual unidades."
+                ]);
+                exit();
+            }
+
+            // Si hay suficiente stock, procedemos a guardar el pedido
             $stmt->bind_param("iidiss", $id_producto, $id_usuario, $precio, $cantidad, $direccion, $telefono);
             $stmt->execute();
             
             $id_ultimo_pedido = $stmt->insert_id;
+
+            $stmt_stock->bind_param("ii", $cantidad, $id_producto);
+            $stmt_stock->execute();
         }
 
-        $stmt->close();
 
+        $stmt->close();
+        $stmt_stock->close();
+        $stmt_check->close();
+
+
+        $db->commit();
         $_SESSION['pedido_completado'] = true;
 
         echo json_encode([
@@ -119,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
 
     } catch (Exception $e) {
+        $db->rollback();
         echo json_encode([
             'success' => false, 
             'message' => 'Error de MySQL: ' . $e->getMessage()
