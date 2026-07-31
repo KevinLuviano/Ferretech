@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($badge) || empty($titulo) || empty($descripcion) || empty($categoria) || empty($url_imagen)) {
         $error = "Por favor, completa todos los campos requeridos.";
     } else {
-        $sql = "INSERT INTO Carrusel (badge_promo, titulo, descripcion, categoria, url_imagen) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Carrusel (badge_promo, titulo, descripcion, id_categoria, url_imagen) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("sssss", $badge, $titulo, $descripcion, $categoria, $url_imagen);
 
@@ -133,11 +133,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <select class="form-select" id="categoria" name="categoria" required>
                                 <option value="" selected disabled>Selecciona una categoría</option>
                                 <?php
-                                $sql_options = "SELECT nombre_categoria FROM Categorias ORDER BY nombre_categoria ASC";
+                                $sql_options = "SELECT id_categoria, nombre_categoria FROM Categorias ORDER BY nombre_categoria ASC";
                                 $res_options = $conexion->query($sql_options);
                                 if ($res_options && $res_options->num_rows > 0) {
                                     while ($opt = $res_options->fetch_assoc()) {
-                                        echo '<option value="' . htmlspecialchars($opt['nombre_categoria']) . '">' . htmlspecialchars($opt['nombre_categoria']) . '</option>';
+                                        echo '<option value="' . $opt['id_categoria'] . '">' . htmlspecialchars($opt['nombre_categoria']) . '</option>';
                                     }
                                 }
                                 ?>
@@ -196,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </thead>
                             <tbody>
                                 <?php
-                                $sql_list = "SELECT * FROM Carrusel ORDER BY id_carrusel DESC";
+                                $sql_list = "SELECT c.*, cat.nombre_categoria FROM Carrusel c LEFT JOIN Categorias cat ON c.id_categoria = cat.id_categoria ORDER BY c.id_carrusel DESC";
                                 $res_list = $conexion->query($sql_list);
                                 if ($res_list && $res_list->num_rows > 0):
                                     while ($carr = $res_list->fetch_assoc()):
@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </td>
                                         <td><span class="badge bg-secondary"><?php echo htmlspecialchars($carr['badge_promo']); ?></span></td>
                                         <td><?php echo htmlspecialchars($carr['titulo']); ?></td>
-                                        <td><?php echo htmlspecialchars($carr['categoria']); ?></td>
+                                        <td><?php echo htmlspecialchars($carr['nombre_categoria']); ?></td>
                                         <td>
                                             <a href="carrusel_modificacion.php?eliminar=<?php echo $carr['id_carrusel']; ?>" 
                                                class="btn btn-sm btn-outline-danger fw-bold px-3" 
